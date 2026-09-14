@@ -763,7 +763,7 @@ export const articles: Article[] = [
 export const quickLinks: QuickLink[] = [
   { id: 1, title: 'Platform SSO UNAIR', url: 'https://unairsatu.unair.ac.id/', order: 1 },
   { id: 2, title: 'E-Learning UNAIR', url: 'https://hebat.elearning.unair.ac.id/', order: 2 },
-  { id: 3, title: 'Perpustakaan Digital', url: 'https://lib.unair.ac.id', order: 3 },
+  { id: 3, title: 'Perpustakaan UNAIR', url: 'https://lib.unair.ac.id', order: 3 },
   { id: 5, title: 'Portal SINTA', url: 'https://sinta.kemdiktisaintek.go.id/', order: 5 },
   { id: 6, title: 'Tracer Study', url: 'https://tracerstudy.unair.ac.id', order: 6 }
 ];

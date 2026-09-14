@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Article, QuickLink } from '@/lib/types';
 import { useLanguage } from '@/lib/LanguageContext';
+import { localizeArticle, localizeQuickLink } from '@/lib/localizedData';
 
 interface SidebarProps {
   popularArticles: Article[];
@@ -12,7 +13,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ popularArticles, upcomingEvents, quickLinks }: SidebarProps) => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   return (
     <aside className="w-full space-y-8">
@@ -22,16 +23,18 @@ const Sidebar = ({ popularArticles, upcomingEvents, quickLinks }: SidebarProps) 
           {t.popularArticles}
         </h3>
         <div className="space-y-4">
-          {popularArticles.map((article) => (
+          {popularArticles.map((article) => {
+            const localizedArticle = localizeArticle(article, language);
+            return (
             <div key={article.id} className="border-b border-border pb-3 last:border-0 last:pb-0">
               <Link href={`/${article.categorySlug}/${article.slug}`} className="block hover:text-secondary font-medium text-text-dark mb-1 transition-colors">
-                {article.title}
+                {localizedArticle.title}
               </Link>
               <div className="flex items-center text-xs text-text-gray mt-1">
                 <span className="bg-cream-dark px-2 py-0.5 rounded text-primary text-[11px] font-semibold">{article.categorySlug}</span>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       </div>
 
@@ -41,13 +44,15 @@ const Sidebar = ({ popularArticles, upcomingEvents, quickLinks }: SidebarProps) 
           {t.upcomingEvents}
         </h3>
         <div className="space-y-4">
-          {upcomingEvents.map((event) => (
+          {upcomingEvents.map((event) => {
+            const localizedEvent = localizeArticle(event, language);
+            return (
             <div key={event.id} className="border-b border-border pb-3 last:border-0 last:pb-0">
               <Link href={`/${event.categorySlug}/${event.slug}`} className="block hover:text-secondary font-medium text-text-dark mb-1 transition-colors">
-                {event.title}
+                {localizedEvent.title}
               </Link>
             </div>
-          ))}
+          )})}
         </div>
       </div>
 
@@ -57,7 +62,9 @@ const Sidebar = ({ popularArticles, upcomingEvents, quickLinks }: SidebarProps) 
           {t.quickLinks}
         </h3>
         <ul className="space-y-2">
-          {quickLinks.map((link) => (
+          {quickLinks.map((link) => {
+            const localizedLink = localizeQuickLink(link, language);
+            return (
             <li key={link.id}>
               <a 
                 href={link.url} 
@@ -65,10 +72,10 @@ const Sidebar = ({ popularArticles, upcomingEvents, quickLinks }: SidebarProps) 
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-secondary hover:underline font-medium text-sm transition-colors"
               >
-                <span>🌐</span> {link.title}
+                <span>🌐</span> {localizedLink.title}
               </a>
             </li>
-          ))}
+          )})}
         </ul>
       </div>
     </aside>

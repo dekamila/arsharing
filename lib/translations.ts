@@ -11,6 +11,14 @@ export const translations = {
     aroundCampus: 'Sekitar Kampus',
     events: 'Event',
     internationalGuide: 'Panduan Internasional',
+    menu: 'Menu',
+    searchAria: 'Cari',
+    explorePortal: 'Jelajahi ARSharing',
+    discoverInfo: 'Temukan informasi yang kamu butuhkan',
+    homeDescription: 'Mulai dari informasi akademik, layanan perpustakaan, beasiswa, karir, hingga event kampus. Pilih kategori untuk melihat semua informasi yang tersedia di dalamnya.',
+    availableInformation: 'informasi tersedia',
+    servicesTopics: 'Layanan & Info Tersedia:',
+    openService: 'Buka Layanan',
     
     // Hero Banner
     heroTitle: 'ARSharing',
@@ -58,6 +66,14 @@ export const translations = {
     aroundCampus: 'Around Campus',
     events: 'Events',
     internationalGuide: 'International Guide',
+    menu: 'Menu',
+    searchAria: 'Search',
+    explorePortal: 'Explore ARSharing',
+    discoverInfo: 'Find the information you need',
+    homeDescription: 'From academic information and library services to scholarships, careers, and campus events. Choose a category to see all available information.',
+    availableInformation: 'available information',
+    servicesTopics: 'Services & Topics:',
+    openService: 'Explore',
     
     // Hero Banner
     heroTitle: 'ARSharing',

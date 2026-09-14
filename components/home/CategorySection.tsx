@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Category, Article } from '@/lib/types';
 import ArticleCard from '@/components/shared/ArticleCard';
 import { useLanguage } from '@/lib/LanguageContext';
+import { localizeCategory } from '@/lib/localizedData';
 
 interface CategorySectionProps {
   category: Category;
@@ -13,15 +14,14 @@ interface CategorySectionProps {
 
 const CategorySection = ({ category, articles }: CategorySectionProps) => {
   const { language, t } = useLanguage();
-
-  const categoryName = language === 'en' && (category as any).nameEn ? (category as any).nameEn : category.name;
+  const localizedCategory = localizeCategory(category, language);
 
   return (
     <section className="py-6 border-b border-border last:border-0">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-primary flex items-center gap-2">
-          <span>{category.icon}</span>
-          <span>{categoryName}</span>
+          <span>{localizedCategory.icon}</span>
+          <span>{localizedCategory.name}</span>
         </h2>
         <Link href={`/${category.slug}`} className="text-secondary hover:underline font-medium text-sm transition-colors">
           {t.viewAll}

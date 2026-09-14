@@ -10,6 +10,8 @@ import {
   getAllQuickLinks
 } from "@/lib/queries";
 import { notFound } from "next/navigation";
+import LocalizedCategoryHeader from "@/components/shared/LocalizedCategoryHeader";
+import LocalizedSectionTitle from "@/components/shared/LocalizedSectionTitle";
 
 export default async function PerpustakaanPage() {
   const categorySlug = 'perpustakaan';
@@ -37,18 +39,17 @@ export default async function PerpustakaanPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
         <div className="lg:col-span-2">
-          <h1 className="text-3xl font-bold text-primary mb-4">📖 {category.name}</h1>
-          <p className="text-gray-600 mb-8">{category.description}</p>
+          <LocalizedCategoryHeader category={category} />
           
           {pinnedArticles.length > 0 && (
             <div className="mb-10">
-              <h2 className="text-xl font-bold text-secondary mb-4 border-b pb-2">Informasi Penting</h2>
+              <LocalizedSectionTitle kind="important" className="text-xl font-bold text-secondary mb-4 border-b pb-2" />
               <ArticleList articles={pinnedArticles} showCategory={false} />
             </div>
           )}
           
           <div>
-            <h2 className="text-xl font-bold text-primary mb-4 border-b pb-2">Semua Informasi</h2>
+            <LocalizedSectionTitle kind="all" className="text-xl font-bold text-primary mb-4 border-b pb-2" />
             <ArticleList articles={allArticles} showCategory={false} />
           </div>
         </div>

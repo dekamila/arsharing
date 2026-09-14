@@ -1,6 +1,9 @@
+"use client";
+
 import React from 'react';
 import { Article } from '@/lib/types';
 import ArticleCard from '@/components/shared/ArticleCard';
+import { useLanguage } from '@/lib/LanguageContext';
 
 interface ArticleListProps {
   articles: Article[];
@@ -8,10 +11,12 @@ interface ArticleListProps {
 }
 
 const ArticleList = ({ articles, showCategory = false }: ArticleListProps) => {
+  const { t } = useLanguage();
+
   if (articles.length === 0) {
     return (
       <div className="py-8 text-center text-text-gray bg-[#FFFDF8] rounded-lg border border-border">
-        Belum ada informasi dalam kategori ini.
+        {t.noArticles}
       </div>
     );
   }

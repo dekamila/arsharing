@@ -85,11 +85,11 @@ const Header = () => {
           </nav>
           
           <div className="md:hidden w-full flex justify-between items-center py-2">
-            <span className="font-bold text-primary">Menu</span>
+            <span className="font-bold text-primary">{t.menu}</span>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-text-dark p-2 rounded hover:bg-cream-dark"
-              aria-label="Toggle menu"
+              aria-label={t.menu}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 {isMobileMenuOpen ? (

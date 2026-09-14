@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/LanguageContext';
+import { localizeArticle } from '@/lib/localizedData';
 
 interface PaginationProps {
   prevArticle: { title: string; slug: string; categorySlug: string } | null;
@@ -10,7 +11,9 @@ interface PaginationProps {
 }
 
 const Pagination = ({ prevArticle, nextArticle }: PaginationProps) => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
+  const localizedPrev = prevArticle ? localizeArticle(prevArticle as Parameters<typeof localizeArticle>[0], language) : null;
+  const localizedNext = nextArticle ? localizeArticle(nextArticle as Parameters<typeof localizeArticle>[0], language) : null;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-8 border-t border-border pt-6">
@@ -24,7 +27,7 @@ const Pagination = ({ prevArticle, nextArticle }: PaginationProps) => {
               <span>←</span> {t.previous}
             </div>
             <div className="font-semibold text-text-dark line-clamp-1 group-hover:text-primary">
-              {prevArticle.title}
+              {localizedPrev?.title}
             </div>
           </Link>
         ) : <div />}
@@ -40,7 +43,7 @@ const Pagination = ({ prevArticle, nextArticle }: PaginationProps) => {
               {t.next} <span>→</span>
             </div>
             <div className="font-semibold text-text-dark line-clamp-1 group-hover:text-primary">
-              {nextArticle.title}
+              {localizedNext?.title}
             </div>
           </Link>
         ) : <div />}

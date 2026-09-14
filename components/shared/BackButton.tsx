@@ -12,9 +12,18 @@ interface BackButtonProps {
 
 const BackButton = ({ href, label }: BackButtonProps) => {
   const router = useRouter();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
-  const displayLabel = label || t.back;
+  const localizedLabel = language === 'en' ? (label || t.back)
+    .replace('Kembali ke Beranda', 'Back to Home')
+    .replace('Kembali ke Akademik', 'Back to Academics')
+    .replace('Kembali ke Perpustakaan', 'Back to Library')
+    .replace('Kembali ke Beasiswa', 'Back to Scholarships')
+    .replace('Kembali ke Magang & Karir', 'Back to Internships & Careers')
+    .replace('Kembali ke Sekitar Kampus', 'Back to Around Campus')
+    .replace('Kembali ke Event', 'Back to Events')
+    .replace('Kembali ke Panduan Internasional', 'Back to International Guide') : (label || t.back);
+  const displayLabel = localizedLabel;
 
   if (href) {
     return (

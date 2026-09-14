@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, startTransition, ReactNode } from 'react';
 import { Language, translations } from './translations';
 
 interface LanguageContextType {
@@ -17,7 +17,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const savedLang = localStorage.getItem('portal_lang') as Language;
     if (savedLang === 'id' || savedLang === 'en') {
-      setLanguageState(savedLang);
+      startTransition(() => setLanguageState(savedLang));
     }
   }, []);
 
