@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #003366;
+  --color-primary-light: #004d99;
+  --color-secondary: #0066CC;
+  --color-cream: #FFF8F0;
+  --color-cream-dark: #F5EDE0;
+  --color-accent: #E8A317;
+  --color-text-dark: #1a1a2e;
+  --color-text-gray: #6b7280;
+  --color-border: #e5e1d8;
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+  font-family: var(--font-sans);
+}
+
+/* Add smooth scrolling, nice link styling, article content styling */
+html { scroll-behavior: smooth; }
+
+.article-content p { margin-bottom: 1rem; line-height: 1.8; }
+.article-content h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: var(--color-primary); }
+.article-content h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--color-primary-light); }
+.article-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.article-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.article-content li { margin-bottom: 0.5rem; line-height: 1.7; }
+.article-content a { color: var(--color-secondary); text-decoration: underline; }
+.article-content a:hover { color: var(--color-primary); }
