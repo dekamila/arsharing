@@ -1,3 +1,5 @@
+"use client";
+
 import { Article } from '@/lib/types';
 import OpportunityCard from './OpportunityCard';
 import { useLanguage } from '@/lib/LanguageContext';
