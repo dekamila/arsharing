@@ -11,9 +11,9 @@ import { useLanguage } from '@/lib/LanguageContext';
 export default function SearchPageContent() {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') || '';
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   
-  const results = q ? searchArticles(q) : [];
+  const results = q ? searchArticles(q, language) : [];
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">

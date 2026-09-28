@@ -4,7 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Article, QuickLink } from '@/lib/types';
 import { useLanguage } from '@/lib/LanguageContext';
-import { localizeArticle, localizeQuickLink } from '@/lib/localizedData';
+import { localizeArticle, localizeCategory, localizeQuickLink } from '@/lib/localizedData';
+import { getCategoryBySlug } from '@/lib/queries';
 
 interface SidebarProps {
   popularArticles: Article[];
@@ -25,13 +26,15 @@ const Sidebar = ({ popularArticles, upcomingEvents, quickLinks }: SidebarProps) 
         <div className="space-y-4">
           {popularArticles.map((article) => {
             const localizedArticle = localizeArticle(article, language);
+            const category = getCategoryBySlug(article.categorySlug);
+            const categoryName = category ? localizeCategory(category, language).name : article.categorySlug;
             return (
             <div key={article.id} className="border-b border-border pb-3 last:border-0 last:pb-0">
               <Link href={`/${article.categorySlug}/${article.slug}`} className="block hover:text-secondary font-medium text-text-dark mb-1 transition-colors">
                 {localizedArticle.title}
               </Link>
               <div className="flex items-center text-xs text-text-gray mt-1">
-                <span className="bg-cream-dark px-2 py-0.5 rounded text-primary text-[11px] font-semibold">{article.categorySlug}</span>
+                <span className="bg-cream-dark px-2 py-0.5 rounded text-primary text-[11px] font-semibold">{categoryName}</span>
               </div>
             </div>
           )})}

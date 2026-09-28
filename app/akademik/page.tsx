@@ -5,7 +5,6 @@ import BackButton from "@/components/shared/BackButton";
 import { 
   getCategoryBySlug, 
   getArticlesByCategory, 
-  getPinnedArticles,
   getPopularArticles,
   getAllQuickLinks
 } from "@/lib/queries";
@@ -22,7 +21,6 @@ export default async function AkademikPage() {
   }
 
   const allArticles = getArticlesByCategory(categorySlug);
-  const pinnedArticles = getPinnedArticles(categorySlug);
   
   const popularArticles = getPopularArticles(5);
   const upcomingEvents = getArticlesByCategory('event').slice(0, 3);
@@ -40,13 +38,6 @@ export default async function AkademikPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
         <div className="lg:col-span-2">
           <LocalizedCategoryHeader category={category} />
-          
-          {pinnedArticles.length > 0 && (
-            <div className="mb-10">
-              <LocalizedSectionTitle kind="important" className="text-xl font-bold text-secondary mb-4 border-b pb-2" />
-              <ArticleList articles={pinnedArticles} showCategory={false} />
-            </div>
-          )}
           
           <div>
             <LocalizedSectionTitle kind="all" className="text-xl font-bold text-primary mb-4 border-b pb-2" />

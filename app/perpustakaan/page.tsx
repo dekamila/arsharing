@@ -5,7 +5,6 @@ import BackButton from "@/components/shared/BackButton";
 import { 
   getCategoryBySlug, 
   getArticlesByCategory, 
-  getPinnedArticles,
   getPopularArticles,
   getAllQuickLinks
 } from "@/lib/queries";
@@ -22,7 +21,6 @@ export default async function PerpustakaanPage() {
   }
 
   const allArticles = getArticlesByCategory(categorySlug);
-  const pinnedArticles = getPinnedArticles(categorySlug);
   
   const popularArticles = getPopularArticles(5);
   const upcomingEvents = getArticlesByCategory('event').slice(0, 3);
@@ -40,13 +38,20 @@ export default async function PerpustakaanPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
         <div className="lg:col-span-2">
           <LocalizedCategoryHeader category={category} />
-          
-          {pinnedArticles.length > 0 && (
-            <div className="mb-10">
-              <LocalizedSectionTitle kind="important" className="text-xl font-bold text-secondary mb-4 border-b pb-2" />
-              <ArticleList articles={pinnedArticles} showCategory={false} />
-            </div>
-          )}
+
+          <div className="mb-6 rounded-xl border border-primary/20 bg-[#FFFDF8] px-4 py-3 shadow-sm">
+            <p className="text-sm text-text-dark mb-2">
+              Informasi lebih lengkap mengenai layanan, katalog, jurnal, dan akses perpustakaan UNAIR bisa dilihat di situs resmi perpustakaan.
+            </p>
+            <a
+              href="https://lib.unair.ac.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center font-semibold text-secondary hover:text-primary transition-colors"
+            >
+              Kunjungi Perpustakaan UNAIR →
+            </a>
+          </div>
           
           <div>
             <LocalizedSectionTitle kind="all" className="text-xl font-bold text-primary mb-4 border-b pb-2" />

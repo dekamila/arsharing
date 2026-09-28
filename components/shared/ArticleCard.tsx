@@ -3,7 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { Article } from '@/lib/types';
-import { localizeArticle } from '@/lib/localizedData';
+import { localizeArticle, localizeCategory } from '@/lib/localizedData';
+import { getCategoryBySlug } from '@/lib/queries';
 import { useLanguage } from '@/lib/LanguageContext';
 
 interface ArticleCardProps {
@@ -14,6 +15,8 @@ interface ArticleCardProps {
 const ArticleCard = ({ article, showCategory = false }: ArticleCardProps) => {
   const { language } = useLanguage();
   const localizedArticle = localizeArticle(article, language);
+  const category = getCategoryBySlug(article.categorySlug);
+  const categoryName = category ? localizeCategory(category, language).name : article.categorySlug;
 
   return (
     <div className="bg-[#FFFDF8] rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col h-full border border-border">
@@ -26,7 +29,7 @@ const ArticleCard = ({ article, showCategory = false }: ArticleCardProps) => {
         />
         {showCategory && (
           <span className="absolute top-2 left-2 bg-secondary text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
-            {article.categorySlug}
+            {categoryName}
           </span>
         )}
       </Link>

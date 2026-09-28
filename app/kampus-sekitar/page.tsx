@@ -1,6 +1,7 @@
-import { getArticlesByCategory, getCategoryBySlug, getPopularArticles, getAllQuickLinks, getPinnedArticles } from '@/lib/queries';
+import { getArticlesByCategory, getCategoryBySlug, getPopularArticles, getAllQuickLinks, getPinnedArticles, getPlacesBySubcategory } from '@/lib/queries';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import ArticleList from '@/components/shared/ArticleList';
+import CategoryArticleList from '@/components/shared/CategoryArticleList';
 import Sidebar from '@/components/layout/Sidebar';
 import BackButton from '@/components/shared/BackButton';
 import { Metadata } from 'next';
@@ -21,6 +22,7 @@ export default function Page() {
   const popularArticles = getPopularArticles(5);
   const upcomingEvents = getArticlesByCategory('event').slice(0, 3);
   const quickLinks = getAllQuickLinks();
+  const places = getPlacesBySubcategory(categorySlug, null);
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
@@ -38,7 +40,7 @@ export default function Page() {
             </div>
           )}
           <LocalizedSectionTitle kind="all" className="text-xl font-semibold text-primary mb-4" />
-          <ArticleList articles={nonPinnedArticles} />
+                    <CategoryArticleList articles={nonPinnedArticles} places={places} subcategories={category?.subcategories || []} />
         </div>
         <aside>
           <Sidebar popularArticles={popularArticles} upcomingEvents={upcomingEvents} quickLinks={quickLinks} />

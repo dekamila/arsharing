@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import SearchBar from '@/components/shared/SearchBar';
 import { useLanguage } from '@/lib/LanguageContext';
 
 const Header = () => {
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -17,20 +18,45 @@ const Header = () => {
     { name: t.library, path: '/perpustakaan' },
     { name: t.scholarships, path: '/beasiswa' },
     { name: t.careers, path: '/magang-karir' },
-    { name: t.aroundCampus, path: '/kampus-sekitar' },
+    { name: t.exploreCity, path: '/jelajah-kota' },
+    { name: t.dailyNeeds, path: '/kebutuhan-harian' },
     { name: t.events, path: '/event' },
     { name: t.internationalGuide, path: '/panduan-internasional' },
   ];
 
-  const currentDate = new Date().toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    setCurrentDate(
+      new Date().toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    );
+  }, [language]);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeaderHeight = () => {
+      document.documentElement.style.setProperty('--site-header-height', `${header.offsetHeight}px`);
+    };
+
+    updateHeaderHeight();
+    const resizeObserver = new ResizeObserver(updateHeaderHeight);
+    resizeObserver.observe(header);
+
+    return () => {
+      resizeObserver.disconnect();
+      document.documentElement.style.removeProperty('--site-header-height');
+    };
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full">
+    <header ref={headerRef} className="sticky top-0 z-50 w-full">
       {/* Top bar */}
       <div className="bg-primary text-white py-2 px-4 md:px-8 flex flex-wrap justify-between items-center text-sm gap-2">
         <div className="font-medium">{t.portalName}</div>

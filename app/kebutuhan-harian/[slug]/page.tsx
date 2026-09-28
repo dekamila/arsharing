@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const article = getArticleBySlug(slug);
   if (!article) notFound();
   
-  const categorySlug = 'kampus-sekitar';
+  const categorySlug = 'kebutuhan-harian';
   const { prev, next } = getAdjacentArticles(slug, categorySlug);
   const popularArticles = getPopularArticles(5);
   const upcomingEvents = getArticlesByCategory('event').slice(0, 3);
@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
-      <Breadcrumb items={[{label:'Beranda',href:'/'},{label:'Sekitar Kampus',href:`/${categorySlug}`},{label:article.title}]} />
+      <Breadcrumb items={[{label:'Beranda',href:'/'},{label:'Kebutuhan Harian',href:`/${categorySlug}`},{label:article.title}]} />
       <BackButton href={`/${categorySlug}`} />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
         <article className="lg:col-span-2">

@@ -1,11 +1,11 @@
-import { getArticlesByCategory, getCategoryBySlug, getPopularArticles, getAllQuickLinks, getPinnedArticles } from '@/lib/queries';
+import { getArticlesByCategory, getCategoryBySlug, getPopularArticles, getAllQuickLinks } from '@/lib/queries';
 import Breadcrumb from '@/components/shared/Breadcrumb';
 import ArticleList from '@/components/shared/ArticleList';
 import Sidebar from '@/components/layout/Sidebar';
 import BackButton from '@/components/shared/BackButton';
 import { Metadata } from 'next';
 import LocalizedCategoryHeader from '@/components/shared/LocalizedCategoryHeader';
-import LocalizedSectionTitle from '@/components/shared/LocalizedSectionTitle';
+import OpportunityList from '@/components/shared/OpportunityList';
 
 export const metadata: Metadata = { 
   title: 'Magang & Karir | ARSharing',
@@ -16,8 +16,11 @@ export default function Page() {
   const categorySlug = 'magang-karir';
   const category = getCategoryBySlug(categorySlug);
   const articles = getArticlesByCategory(categorySlug);
-  const pinnedArticles = getPinnedArticles(categorySlug);
-  const nonPinnedArticles = articles.filter(a => !a.isPinned);
+    const topInfoArticles = articles.filter((article) =>
+      ['tips-cv-ats-friendly', 'magang-startup-pengalaman', 'persiapan-interview-kerja'].includes(article.slug)
+    );
+    const featuredGoogleArticle = articles.filter((article) => article.slug === 'magang-google-indonesia-2027');
+    const otherJobArticles = articles.filter((article) => article.slug === 'career-fair-unair-2026');
   const popularArticles = getPopularArticles(5);
   const upcomingEvents = getArticlesByCategory('event').slice(0, 3);
   const quickLinks = getAllQuickLinks();
@@ -31,14 +34,17 @@ export default function Page() {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          {pinnedArticles.length > 0 && (
-            <div className="mb-8">
-              <LocalizedSectionTitle kind="important" className="text-xl font-semibold text-primary mb-4 flex items-center gap-2" />
-              <ArticleList articles={pinnedArticles} />
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-lg font-semibold text-primary mb-3">📝 Sekilas Informasi</h3>
+                <ArticleList articles={topInfoArticles} />
             </div>
-          )}
-          <LocalizedSectionTitle kind="all" className="text-xl font-semibold text-primary mb-4" />
-          <ArticleList articles={nonPinnedArticles} />
+
+            <div>
+              <h3 className="text-lg font-semibold text-primary mb-3">💼 Lowongan</h3>
+              <OpportunityList articles={[...featuredGoogleArticle, ...otherJobArticles]} />
+            </div>
+          </div>
         </div>
         <aside>
           <Sidebar popularArticles={popularArticles} upcomingEvents={upcomingEvents} quickLinks={quickLinks} />

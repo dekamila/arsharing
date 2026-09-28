@@ -1,5 +1,7 @@
-import { categories, articles, quickLinks } from './data';
-import { Article, Category, QuickLink } from './types';
+import { categories, articles, quickLinks, places } from './data';
+import { Article, Category, QuickLink, Place } from './types';
+import { Language } from './translations';
+import { localizeArticle } from './localizedData';
 
 export function getAllCategories(): Category[] { 
   return categories; 
@@ -38,14 +40,15 @@ export function getPinnedArticles(categorySlug: string): Article[] {
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }
 
-export function searchArticles(query: string): Article[] {
+export function searchArticles(query: string, language: Language = 'id'): Article[] {
   const lowerQuery = query.toLowerCase();
-  return articles.filter(a => 
-    a.title.toLowerCase().includes(lowerQuery) ||
-    a.excerpt.toLowerCase().includes(lowerQuery) ||
-    a.content.toLowerCase().includes(lowerQuery) ||
-    a.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
-  );
+  return articles.filter((article) => {
+    const searchableArticle = localizeArticle(article, language);
+    return searchableArticle.title.toLowerCase().includes(lowerQuery) ||
+      searchableArticle.excerpt.toLowerCase().includes(lowerQuery) ||
+      searchableArticle.content.toLowerCase().includes(lowerQuery) ||
+      searchableArticle.tags.some((tag) => tag.toLowerCase().includes(lowerQuery));
+  });
 }
 
 export function getRecentArticlesByCategory(categorySlug: string, limit: number = 3): Article[] {
@@ -68,4 +71,14 @@ export function getAdjacentArticles(currentSlug: string, categorySlug: string): 
     prev: currentIndex < categoryArts.length - 1 ? categoryArts[currentIndex + 1] : null,
     next: currentIndex > 0 ? categoryArts[currentIndex - 1] : null
   };
+}
+
+export function getPlacesBySubcategory(categorySlug: string, subcategorySlug: string | null): Place[] {
+  return places.filter(
+    (p) => p.categorySlug === categorySlug && (subcategorySlug ? p.subcategorySlug === subcategorySlug : true)
+  );
+}
+
+export function getPlaceBySlug(categorySlug: string, slug: string): Place | undefined {
+  return places.find((p) => p.categorySlug === categorySlug && p.slug === slug);
 }

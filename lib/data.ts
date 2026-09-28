@@ -1,4 +1,4 @@
-import { Category, Article, QuickLink } from './types';
+import { Category, Article, QuickLink, Place } from './types';
 
 export const categories: Category[] = [
   { 
@@ -39,12 +39,18 @@ export const categories: Category[] = [
   },
   { 
     id: 5, 
-    name: 'Sekitar Kampus', 
-    slug: 'kampus-sekitar', 
-    description: 'Panduan kebutuhan harian mahasiswa di sekitar lingkungan kampus UNAIR. Informasi rekomendasi kos/kontrakan murah, warung makan ramah kantong, rute angkutan umum/bus, serta tempat nongkrong.', 
-    icon: '🍜', 
+    name: 'Jelajah Kota', 
+    slug: 'jelajah-kota', 
+    description: 'Panduan menjelajahi sudut kota Surabaya, mulai dari destinasi kuliner legendaris, spot nongkrong, ruang budaya, museum bersejarah, hingga perpustakaan publik.', 
+    icon: '🗺️', 
     order: 5,
-    highlights: ['Rekomendasi 10 Warung Makan Murah Dekat Kampus', 'Info Kos & Kontrakan Area Mulyorejo & Gubeng', 'Rute Angkot & Bus Trans Semanggi Suroboyo', 'Destinasi Wisata & Ruang Publik Weekend']
+    highlights: ['Rekomendasi Kuliner Legendaris & Cafe Hits', 'Destinasi Wisata Sejarah & Budaya', 'Museum & Galeri Seni di Surabaya', 'Perpustakaan Umum untuk Ruang Belajar'],
+    subcategories: [
+      { slug: 'kuliner', name: 'Kuliner', nameEn: 'Food & Dining', order: 1 },
+      { slug: 'wisata-budaya', name: 'Wisata & Budaya', nameEn: 'Tourism & Culture', order: 2 },
+      { slug: 'museum-galeri', name: 'Museum & Galeri', nameEn: 'Museums & Galleries', order: 3 },
+      { slug: 'perpustakaan-umum', name: 'Perpustakaan Umum', nameEn: 'Public Libraries', order: 4 },
+    ]
   },
   { 
     id: 6, 
@@ -63,6 +69,21 @@ export const categories: Category[] = [
     icon: '🌏', 
     order: 7,
     highlights: ['Panduan Lengkap Pengurusan Visa Pelajar (VITAS)', 'Rekomendasi Akomodasi Mahasiswa Internasional', 'Layanan International Office UNAIR', 'Tips Adaptasi Budaya & Bahasa di Surabaya']
+  },
+  {
+    id: 8,
+    name: 'Kebutuhan Harian',
+    slug: 'kebutuhan-harian',
+    description: 'Informasi lengkap seputar pemenuhan kebutuhan harian mahasiswa di Surabaya. Mulai dari info indekos & kontrakan, rute transportasi umum, jasa laundry, hingga pusat belanja kebutuhan pokok.',
+    icon: '🏠',
+    order: 8,
+    highlights: ['Info Kos & Kontrakan Area Mulyorejo & Gubeng', 'Panduan Rute Bus & Transportasi Kampus', 'Rekomendasi Laundry Kiloan Cepat & Bersih', 'Pusat Belanja Sembako & Kebutuhan Sehari-hari'],
+    subcategories: [
+      { slug: 'kos-kontrakan', name: 'Kos & Kontrakan', nameEn: 'Boarding Houses & Rentals', order: 1 },
+      { slug: 'transportasi', name: 'Transportasi', nameEn: 'Transportation', order: 2 },
+      { slug: 'laundry', name: 'Laundry', nameEn: 'Laundry', order: 3 },
+      { slug: 'belanja-harian', name: 'Belanja Harian', nameEn: 'Daily Shopping', order: 4 },
+    ]
   }
 ];
 
@@ -288,7 +309,13 @@ export const articles: Article[] = [
     tags: ['nasional', 'kemendikbud'],
     isPinned: true,
     isPopular: true,
-    publishedAt: '2026-09-01T08:00:00Z'
+    publishedAt: '2026-09-01T08:00:00Z',
+    deadline: '15 Oktober 2026',
+    deadlineEn: 'October 15, 2026',
+    requirements: 'IPK minimal 3,25, prestasi nasional/internasional, esai rencana studi, dan TOEFL/IELTS.',
+    requirementsEn: 'Minimum GPA of 3.25 for bachelor\'s students or 3.50 for graduate students, national or international achievement, a study-plan essay, and TOEFL/IELTS.',
+    stages: 'Administrasi, verifikasi dokumen, dan wawancara.',
+    stagesEn: 'Administrative screening, document verification, and interview.'
   },
   {
     id: 12,
@@ -307,7 +334,13 @@ export const articles: Article[] = [
     tags: ['lpdp', 'pascasarjana'],
     isPinned: true,
     isPopular: true,
-    publishedAt: '2026-08-25T09:00:00Z'
+    publishedAt: '2026-08-25T09:00:00Z',
+    deadline: 'Sesuai periode pendaftaran LPDP 2027',
+    deadlineEn: 'Based on the 2027 LPDP application cycle',
+    requirements: 'Ijazah, transkrip nilai, sertifikat bahasa, LoA, dan esai kontribusi untuk Indonesia.',
+    requirementsEn: 'Diploma, academic transcript, language certificate, Letter of Acceptance, and an essay on contributing to Indonesia.',
+    stages: 'Administrasi, bakat skolastik, dan seleksi substansi.',
+    stagesEn: 'Administrative screening, scholastic aptitude test, and substantive selection.'
   },
   {
     id: 13,
@@ -319,14 +352,23 @@ export const articles: Article[] = [
     <p>Besma (sebutan untuk penerima beasiswa) akan mendapatkan uang saku bulanan sebesar Rp 1.000.000 selama satu tahun. Yang lebih berharga, mereka akan diikutsertakan dalam serangkaian pelatihan seperti Nation Building, Character Building, Leadership Development, Competition Challenges, dan International Exposure. Program ini dirancang untuk mencetak pemimpin masa depan Indonesia yang tangguh dan berwawasan luas.</p>
     <h2>Syarat Pendaftaran</h2>
     <p>Program ini khusus untuk mahasiswa yang saat ini sedang menempuh semester 4 (angkatan 2024). Syarat utamanya adalah memiliki IPK minimal 3.20 hingga semester 3, aktif dalam kegiatan organisasi kampus maupun luar kampus, dan tidak sedang menerima beasiswa dari pihak lain. Pendaftar juga harus lolos serangkaian tes tertulis dan wawancara.</p>
-    <p>Batas akhir pengumpulan berkas di Direktorat Kemahasiswaan UNAIR adalah tanggal 20 Mei 2026. Mahasiswa yang berminat diharapkan segera menyiapkan dokumen transkrip nilai, sertifikat kepanitiaan/organisasi, dan surat keterangan aktif kuliah.</p>`,
+    <p>Batas akhir pengumpulan berkas di Direktorat Kemahasiswaan UNAIR adalah tanggal 20 Mei 2026. Mahasiswa yang berminat diharapkan segera menyiapkan dokumen transkrip nilai, sertifikat kepanitiaan/organisasi, dan surat keterangan aktif kuliah.</p>
+    <h2>Informasi Resmi dan Pendaftaran</h2>
+    <p>Informasi lengkap mengenai Djarum Beasiswa Plus dapat dilihat di <a href="https://djarumbeasiswaplus.org/home" target="_blank" rel="noopener noreferrer">Djarum Beasiswa Plus | Program Beasiswa Prestasi untuk Mahasiswa Indonesia</a>.</p>
+    <p>Untuk melihat persyaratan dan melakukan pendaftaran, kunjungi <a href="https://djarumbeasiswaplus.org/our-program/regulation-djarum-beasiswa-plus" target="_blank" rel="noopener noreferrer">Persyaratan Djarum Beasiswa Plus</a>.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Djarum+Beasiswa',
     categoryId: 3,
     categorySlug: 'beasiswa',
     tags: ['djarum', 'softskill'],
     isPinned: false,
     isPopular: true,
-    publishedAt: '2026-08-15T10:00:00Z'
+    publishedAt: '2026-08-15T10:00:00Z',
+    deadline: '20 Mei 2026',
+    deadlineEn: 'May 20, 2026',
+    requirements: 'Mahasiswa semester 4, IPK minimal 3,20, aktif berorganisasi, dan tidak menerima beasiswa lain.',
+    requirementsEn: 'Semester 4 students with a minimum GPA of 3.20, active in organizations, and not receiving another scholarship.',
+    stages: 'Seleksi administrasi, tes tertulis, dan wawancara.',
+    stagesEn: 'Administrative screening, written test, and interview.'
   },
   {
     id: 14,
@@ -345,7 +387,13 @@ export const articles: Article[] = [
     tags: ['exchange', 'internasional'],
     isPinned: false,
     isPopular: false,
-    publishedAt: '2026-09-03T11:00:00Z'
+    publishedAt: '2026-09-03T11:00:00Z',
+    deadline: 'Akhir September 2026',
+    deadlineEn: 'End of September 2026',
+    requirements: 'Mahasiswa semester 3-5, IPK minimal 3,30, dan TOEFL ITP minimal 550 atau setara.',
+    requirementsEn: 'Students in semesters 3-5 with a minimum GPA of 3.30 and a TOEFL ITP score of at least 550 or equivalent.',
+    stages: 'Seleksi berkas, Focus Group Discussion, dan wawancara bahasa Inggris.',
+    stagesEn: 'Document screening, focus group discussion, and interview in English.'
   },
   {
     id: 15,
@@ -388,7 +436,13 @@ export const articles: Article[] = [
     tags: ['magang', 'teknologi'],
     isPinned: true,
     isPopular: true,
-    publishedAt: '2026-09-05T08:00:00Z'
+    publishedAt: '2026-09-05T08:00:00Z',
+    deadline: '30 Oktober 2026',
+    deadlineEn: 'October 30, 2026',
+    requirements: 'Mahasiswa dari jurusan teknologi, bisnis, ekonomi, komunikasi, hukum, atau ilmu sosial.',
+    requirementsEn: 'Students in technology, business, economics, communications, law, or social sciences.',
+    stages: 'Seleksi berkas, online assessment, dan wawancara teknis atau studi kasus.',
+    stagesEn: 'Document screening, online assessment, and technical or case-study interviews.'
   },
   {
     id: 17,
@@ -426,7 +480,13 @@ export const articles: Article[] = [
     tags: ['careerfair', 'lowongan'],
     isPinned: false,
     isPopular: true,
-    publishedAt: '2026-09-02T10:00:00Z'
+    publishedAt: '2026-09-02T10:00:00Z',
+    deadline: '15-17 Oktober 2026',
+    deadlineEn: 'October 15-17, 2026',
+    requirements: 'Mahasiswa atau lulusan baru dengan CV terbaru dan akun pendaftaran DPKKA.',
+    requirementsEn: 'Students or recent graduates with an up-to-date CV and a DPKKA registration account.',
+    stages: 'Registrasi online, company presentation, dan walk-in interview.',
+    stagesEn: 'Online registration, company presentations, and walk-in interviews.'
   },
   {
     id: 19,
@@ -467,22 +527,32 @@ export const articles: Article[] = [
     publishedAt: '2026-08-25T12:00:00Z'
   },
 
-  // Kampus Sekitar
+  // Jelajah Kota & Kebutuhan Harian
   {
     id: 21,
     title: '10 Warung Makan Murah dan Enak Dekat Kampus C',
+    titleEn: '10 Affordable and Delicious Food Spots Near Campus C',
     slug: 'warung-makan-murah-kampus-c',
     excerpt: 'Rekomendasi tempat makan favorit mahasiswa UNAIR di sekitar area Mulyorejo dengan harga kantong mahasiswa.',
+    excerptEn: 'Favorite eateries for UNAIR students in the Mulyorejo area offering delicious food at student-friendly prices.',
     content: `<p>Menjadi anak kos di sekitar Kampus C UNAIR (Mulyorejo) berarti Anda harus pintar-pintar mengatur pengeluaran, terutama untuk urusan perut. Untungnya, di sekitar area kampus bertebaran berbagai warung makan yang tidak hanya lezat, tetapi juga sangat bersahabat dengan kantong mahasiswa. Berikut adalah beberapa rekomendasi tempat makan legendaris yang wajib Anda coba.</p>
     <h2>Kawasan Wisata Kuliner (Wiskul) Dharmahusada dan Mulyorejo</h2>
     <p>Di sepanjang Jalan Mulyorejo Raya, Anda bisa menemukan surga kuliner malam. Salah satu yang paling terkenal adalah Nasi Goreng Makarti yang selalu ramai pengunjung karena porsinya yang brutal dan rasa bumbu jawanya yang khas. Ada juga Warung Bu Sri yang menyajikan nasi campur dan ayam geprek dengan harga di bawah Rp 15.000, lengkap dengan es teh manis berukuran jumbo.</p>
     <h2>Kantin Kampus dan Sekitarnya</h2>
     <p>Jangan lupakan kantin di dalam area kampus itu sendiri. Kantin FIB (Fakultas Ilmu Budaya) dan Kantin FST (Sains dan Teknologi) terkenal dengan soto ayam dan penyetan lauknya yang murah meriah. Di dekat pintu keluar belakang kampus, terdapat deretan pedagang kaki lima yang menjual batagor, siomay, dan es oyen yang sangat cocok untuk mengganjal perut di sela-sela pergantian jam kuliah.</p>
     <p>Bagi penggemar makanan pedas, Mie Gacoan cabang Mulyosari dan berbagai kedai seblak di daerah Sutorejo juga menjadi destinasi favorit mahasiswa untuk nongkrong sambil mengerjakan tugas kelompok.</p>`,
+    contentEn: `<p>Living as a university student near UNAIR Campus C (Mulyorejo) means learning how to manage your daily expenses smartly, especially for meals. Fortunately, the campus area is surrounded by various eateries that are not only delicious but also very kind to student budgets. Here are several legendary food recommendations you must try.</p>
+    <h2>Dharmahusada and Mulyorejo Culinary Tourism Area</h2>
+    <p>Along Jalan Mulyorejo Raya, you will find a bustling evening culinary hub. One of the most famous is Nasi Goreng Makarti, always packed with visitors due to its hearty portions and distinctive Javanese seasoning. There is also Warung Bu Sri, serving mixed rice (nasi campur) and crispy smashed chicken (ayam geprek) for under IDR 15,000, complete with a jumbo iced sweet tea.</p>
+    <h2>Campus Canteens and Surrounding Stalls</h2>
+    <p>Do not miss out on the canteens within the campus itself. The Faculty of Humanities (FIB) and Faculty of Science and Technology (FST) canteens are well-known for their budget-friendly chicken soto and spicy sambal dishes. Near the rear campus gate, rows of street vendors offer batagor, siomay, and es oyen—ideal snacks between lecture periods.</p>
+    <p>For spicy food lovers, Mie Gacoan on Mulyosari and various seblak stalls in the Sutorejo area remain student favorites for hanging out while completing group assignments.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Kuliner+Kampus+C',
     categoryId: 5,
-    categorySlug: 'kampus-sekitar',
+    categorySlug: 'jelajah-kota',
+    subcategorySlug: 'kuliner',
     tags: ['kuliner', 'mulyorejo'],
+    tagsEn: ['culinary', 'mulyorejo'],
     isPinned: true,
     isPopular: true,
     publishedAt: '2026-08-10T08:00:00Z'
@@ -490,18 +560,28 @@ export const articles: Article[] = [
   {
     id: 22,
     title: 'Rekomendasi Kos dan Kontrakan Area Mulyorejo',
+    titleEn: 'Housing Recommendations Around Mulyorejo',
     slug: 'rekomendasi-kos-mulyorejo',
     excerpt: 'Panduan mencari tempat tinggal bagi mahasiswa perantauan di sekitar Kampus C UNAIR beserta perkiraan harganya.',
+    excerptEn: 'A guide to finding student boarding houses and rental homes near UNAIR Campus C, including estimated monthly rates.',
     content: `<p>Bagi mahasiswa baru yang berasal dari luar kota Surabaya, mencari tempat tinggal (indekos atau kontrakan) yang nyaman, aman, dan dekat dengan kampus adalah salah satu prioritas utama. Area Mulyorejo, Sutorejo, dan Dharmahusada menjadi primadona karena aksesibilitasnya yang mudah menuju Kampus C UNAIR.</p>
     <h2>Tipe dan Harga Indekos</h2>
     <p>Harga indekos di area ini sangat bervariasi tergantung pada fasilitas yang ditawarkan. Untuk kos standar (kamar mandi luar, tanpa AC) harganya berkisar antara Rp 600.000 hingga Rp 900.000 per bulan. Sementara untuk kos eksklusif (kamar mandi dalam, AC, WiFi, layanan cuci, dan keamanan 24 jam) dibanderol mulai dari Rp 1.500.000 hingga Rp 2.500.000 per bulan. Gang-gang kecil di sekitar Jalan Mulyorejo Tengah dan Utara menyimpan banyak hidden gem indekos dengan harga rasional.</p>
     <h2>Opsi Rumah Kontrakan Bersama</h2>
     <p>Jika Anda memiliki teman sekelompok (3-5 orang), menyewa rumah kontrakan (paviliun) bisa menjadi opsi yang jauh lebih ekonomis dan memberikan privasi lebih. Harga sewa rumah di perumahan Dharmahusada Mas atau Sutorejo Prima berkisar antara Rp 25.000.000 hingga Rp 40.000.000 per tahun, yang jika dibagi rata akan terasa lebih ringan.</p>
     <p>Sangat disarankan untuk melakukan survei langsung ke lokasi sebelum membayar uang muka. Perhatikan faktor-faktor krusial seperti bebas banjir (mengingat beberapa area di Surabaya rawan genangan saat musim hujan deras), keamanan lingkungan, serta aturan jam malam yang ditetapkan oleh pemilik kos.</p>`,
+    contentEn: `<p>For new students moving from outside Surabaya, finding safe, comfortable, and conveniently located accommodation near campus is a top priority. The Mulyorejo, Sutorejo, and Dharmahusada neighborhoods are the most sought-after due to their easy access to UNAIR Campus C.</p>
+    <h2>Boarding House Types and Estimated Rates</h2>
+    <p>Boarding house (kost) rates in this area vary depending on the provided amenities. Standard rooms (shared bathroom, without AC) generally range from IDR 600,000 to IDR 900,000 per month. Meanwhile, exclusive rooms (private ensuite bathroom, AC, Wi-Fi, laundry service, and 24-hour security) range from IDR 1,500,000 to IDR 2,500,000 per month. Alleys along Jalan Mulyorejo Tengah and Utara hold many hidden gems with reasonable prices.</p>
+    <h2>Shared House Rental Options</h2>
+    <p>If you have a group of friends (3–5 people), renting a full house or pavilion can be far more economical and provides greater privacy. House rental prices in residential complexes like Dharmahusada Mas or Sutorejo Prima range between IDR 25,000,000 and IDR 40,000,000 per year, which becomes very affordable when split evenly.</p>
+    <p>Visiting and surveying locations in person before paying a deposit is highly recommended. Pay close attention to flood-free streets during heavy rains, neighborhood safety, and curfew rules set by landlords.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Info+Kos',
-    categoryId: 5,
-    categorySlug: 'kampus-sekitar',
+    categoryId: 8,
+    categorySlug: 'kebutuhan-harian',
+    subcategorySlug: 'kos-kontrakan',
     tags: ['kos', 'akomodasi'],
+    tagsEn: ['housing', 'accommodation'],
     isPinned: true,
     isPopular: true,
     publishedAt: '2026-07-25T09:00:00Z'
@@ -509,18 +589,28 @@ export const articles: Article[] = [
   {
     id: 23,
     title: 'Rute Angkot dan Bus ke Kampus UNAIR',
+    titleEn: 'Public Transport Routes to UNAIR Campuses',
     slug: 'rute-angkot-bus-kampus',
     excerpt: 'Panduan transportasi umum Suroboyo Bus, Wara-Wiri, dan Angkot untuk mobilitas antar kampus UNAIR.',
+    excerptEn: 'A public transport guide covering Suroboyo Bus, Trans Semanggi, Wara-Wiri, and angkot routes for mobility between UNAIR campuses.',
     content: `<p>Meskipun banyak mahasiswa yang menggunakan kendaraan pribadi, transportasi umum di Surabaya kini semakin memadai dan terintegrasi. Bagi mahasiswa yang tidak membawa motor, memahami rute angkutan kota (bemo/angkot), Suroboyo Bus, dan bus internal kampus (Wara-Wiri) sangatlah penting untuk mobilitas sehari-hari.</p>
     <h2>Bus Internal Kampus (Flash UNAIR)</h2>
     <p>Universitas Airlangga menyediakan fasilitas bus gratis yang dikenal dengan sebutan Bus Flash (Fast Local Area Shuttle) atau Wara-Wiri. Bus ini melayani rute melingkar yang menghubungkan Kampus A (Kedokteran), Kampus B (Dharmawangsa), dan Kampus C (Mulyorejo). Bus beroperasi dari hari Senin hingga Jumat mulai pukul 07.00 hingga 17.00 WIB. Jadwal keberangkatan adalah setiap 30-45 menit sekali di halte-halte utama setiap kampus.</p>
     <h2>Suroboyo Bus dan Trans Semanggi</h2>
     <p>Untuk mobilitas dari tempat kos atau pusat kota menuju kampus, Suroboyo Bus dan Trans Semanggi Suroboyo (Teman Bus) adalah pilihan yang sangat nyaman, ber-AC, dan murah. Rute T2 (UNESA - ITS) melewati tepat di depan Kampus C UNAIR (Halte UNAIR). Tarif untuk pelajar/mahasiswa sangat terjangkau, dan pembayarannya bisa dilakukan menggunakan uang elektronik (e-money) atau metode scan QRIS.</p>
     <p>Bagi yang tinggal di daerah agak masuk ke dalam gang, angkutan kota konvensional (Bemo) rute O atau WK masih menjadi andalan warga lokal. Selain itu, tentu saja selalu ada opsi ojek online atau sepeda listrik sewaan yang banyak tersebar di area Mulyorejo dan Dharmawangsa.</p>`,
+    contentEn: `<p>While many students ride private motorbikes, public transit in Surabaya has become increasingly modern and well-integrated. For students without personal vehicles, knowing how to navigate city minivans (angkot/bemo), the Suroboyo Bus network, and the free internal campus shuttle (Wara-Wiri) is essential for daily commuting.</p>
+    <h2>Internal Campus Shuttle Bus (UNAIR Flash)</h2>
+    <p>Universitas Airlangga provides a free shuttle bus service known as Bus Flash (Fast Local Area Shuttle) or Wara-Wiri. This bus follows a circular route connecting Campus A (Medicine), Campus B (Dharmawangsa), and Campus C (Mulyorejo). It operates Monday through Friday from 07:00 to 17:00 WIB, departing every 30 to 45 minutes from main bus stops on each campus.</p>
+    <h2>Suroboyo Bus and Trans Semanggi</h2>
+    <p>For commuting from student housing or downtown Surabaya to campus, Suroboyo Bus and Trans Semanggi Suroboyo (Teman Bus) offer clean, air-conditioned, and economical travel. Route T2 (UNESA - ITS) stops directly in front of UNAIR Campus C (Halte UNAIR). Fares for students are very low, payable via electronic money cards (e-money) or QRIS scanning.</p>
+    <p>For students living deeper inside residential alleys, traditional angkot routes (Bemo O or WK) remain reliable. In addition, ride-hailing services (ojek online) and shared electric bikes are readily available throughout Mulyorejo and Dharmawangsa.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Transportasi',
-    categoryId: 5,
-    categorySlug: 'kampus-sekitar',
+    categoryId: 8,
+    categorySlug: 'kebutuhan-harian',
+    subcategorySlug: 'transportasi',
     tags: ['transportasi', 'bus'],
+    tagsEn: ['transportation', 'bus'],
     isPinned: false,
     isPopular: true,
     publishedAt: '2026-08-05T10:00:00Z'
@@ -528,18 +618,28 @@ export const articles: Article[] = [
   {
     id: 24,
     title: 'Tempat Nongkrong Favorit Mahasiswa Surabaya',
+    titleEn: 'Favorite Student Hangouts in Surabaya',
     slug: 'tempat-nongkrong-favorit',
     excerpt: 'Daftar cafe dan coffee shop instagramable di sekitar Surabaya Timur yang cocok untuk nugas atau sekadar bersantai.',
+    excerptEn: 'A curated list of aesthetic cafes and coffee shops in East Surabaya ideal for studying or casual unwinding.',
     content: `<p>Kultur ngopi dan nongkrong sambil mengerjakan tugas kelompok (nugas) adalah bagian tak terpisahkan dari kehidupan mahasiswa zaman sekarang. Beruntung, Surabaya Timur, khususnya di sekitar kampus UNAIR dan ITS, dikelilingi oleh ratusan kedai kopi (coffee shop) yang menawarkan suasana cozy dan koneksi internet yang kencang.</p>
     <h2>Coffee Shop Area Dharmawangsa dan Gubeng</h2>
     <p>Di sekitar Kampus B, Jalan Dharmawangsa dipenuhi oleh deretan cafe modern. Beberapa yang menjadi favorit mahasiswa karena suasananya yang tenang dan colokan listrik yang melimpah adalah Historisma, Tanda Seru Coffee, dan Thirty Three Brew. Tempat-tempat ini biasanya buka hingga tengah malam, sangat cocok untuk mahasiswa yang butuh fokus mengejar deadline tugas atau revisi skripsi.</p>
     <h2>Pusat Nongkrong Area Kertajaya dan Merr</h2>
     <p>Bergeser sedikit ke arah Kertajaya dan Middle East Ring Road (MERR), pilihan tempat nongkrong menjadi lebih beragam. Communal Space yang luas dengan konsep semi-outdoor sangat diminati untuk berkumpul bersama teman-teman organisasi atau UKM. Pilihan makanannya pun bervariasi mulai dari sekadar pastry hingga makanan berat ala western atau fushion.</p>
     <p>Tips bagi mahasiswa: carilah cafe yang memiliki promo khusus pelajar dengan menunjukkan KTM (Kartu Tanda Mahasiswa), karena harga kopi spesiality di Surabaya cukup lumayan (berkisar Rp 25.000 - Rp 45.000 per gelas). Jangan lupa untuk tetap menerapkan etika nugas di cafe, dengan memesan secukupnya jika berniat tinggal berjam-jam.</p>`,
+    contentEn: `<p>Enjoying coffee while completing group projects (nugas) has become an integral part of modern student life. Fortunately, East Surabaya—especially around the UNAIR and ITS campuses—features hundreds of cozy coffee shops with fast internet connections and welcoming vibes.</p>
+    <h2>Dharmawangsa and Gubeng Coffee Shops</h2>
+    <p>Near Campus B, Jalan Dharmawangsa is lined with modern cafes. Popular student favorites known for their quiet work atmosphere and abundant power outlets include Historisma, Tanda Seru Coffee, and Thirty Three Brew. These spots are often open until midnight, making them perfect for students meeting assignment deadlines or thesis revisions.</p>
+    <h2>Kertajaya and MERR Hangout Centers</h2>
+    <p>Venturing toward Kertajaya and the Middle East Ring Road (MERR), choices become even more diverse. Spacious communal spaces with semi-outdoor seating are popular gathering spots for student organizations and clubs. Menu offerings span from light pastries to hearty western and fusion dishes.</p>
+    <p>Student tip: look out for student discounts by presenting your Student ID Card (KTM), as specialty coffee prices in Surabaya typically range between IDR 25,000 and IDR 45,000 per cup. Always observe good cafe etiquette by ordering reasonably if staying for multiple hours.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Cafe+Surabaya',
     categoryId: 5,
-    categorySlug: 'kampus-sekitar',
+    categorySlug: 'jelajah-kota',
+    subcategorySlug: 'kuliner',
     tags: ['nongkrong', 'cafe'],
+    tagsEn: ['hangout', 'cafe'],
     isPinned: false,
     isPopular: false,
     publishedAt: '2026-08-15T11:00:00Z'
@@ -547,18 +647,28 @@ export const articles: Article[] = [
   {
     id: 25,
     title: 'Destinasi Wisata Weekend di Sekitar Surabaya',
+    titleEn: 'Weekend Destinations Around Surabaya',
     slug: 'wisata-weekend-surabaya',
     excerpt: 'Ide liburan akhir pekan singkat (short escape) di dalam kota Surabaya maupun kota-kota sekitarnya untuk melepas penat.',
+    excerptEn: 'Short weekend escape ideas within Surabaya and neighboring regencies for refreshing breaks from study routines.',
     content: `<p>Tugas kuliah dan rutinitas kampus yang padat bisa memicu stres jika tidak diimbangi dengan rekreasi. Saat libur akhir pekan tiba, tak ada salahnya untuk menjelajahi berbagai destinasi wisata menarik yang ada di Surabaya atau melipir sedikit ke wilayah sekitarnya (Sidoarjo, Gresik, Pasuruan, atau Malang) untuk melakukan penyegaran pikiran (healing).</p>
     <h2>Wisata Dalam Kota Surabaya</h2>
     <p>Untuk opsi yang murah dan tidak menguras tenaga, Surabaya memiliki banyak taman kota yang asri, seperti Taman Bungkul yang ikonik, Taman Flora Bratang, atau Hutan Bambu Keputih yang sangat instagramable. Anda juga bisa menikmati suasana kota tua (heritage) di kawasan Jembatan Merah dan Tunjungan, atau mengunjungi museum-museum bersejarah seperti Museum House of Sampoerna dan Monumen Kapal Selam.</p>
     <h2>Short Escape ke Luar Kota (Aglomerasi Gerbangkertosusila)</h2>
     <p>Bagi yang memiliki waktu lebih, perjalanan satu hingga dua jam dari Surabaya akan membawa Anda ke pemandangan alam yang berbeda. Daerah Trawas dan Pacet di Mojokerto, serta Prigen di Pasuruan menawarkan hawa pegunungan yang sejuk dengan deretan cafe bernuansa alam dan air terjun.</p>
     <p>Sementara jika Anda merindukan pantai, wisata Mangrove di Wonorejo (Surabaya Timur) atau bergeser ke Gresik dan Madura bisa menjadi alternatif yang seru untuk dilakukan bersama teman-teman satu kos di hari Minggu sebelum kembali menghadapi kerasnya kehidupan perkuliahan di hari Senin.</p>`,
+    contentEn: `<p>Intense coursework and campus schedules can lead to fatigue if not balanced with leisure. When the weekend arrives, exploring refreshing destinations in Surabaya or nearby areas (Sidoarjo, Gresik, Pasuruan, or Malang) offers an excellent way to recharge your mind.</p>
+    <h2>Surabaya City Destinations</h2>
+    <p>For affordable and low-effort options, Surabaya boasts lush city parks such as the iconic Taman Bungkul, Taman Flora Bratang, or the photogenic Keputih Bamboo Forest. You can also explore historic heritage architecture in the Jembatan Merah and Tunjungan districts, or visit cultural landmarks like the House of Sampoerna and the Submarine Monument (Monkasel).</p>
+    <h2>Short Escapes Outside the City</h2>
+    <p>For those with extra time, a 1-to-2-hour trip outside Surabaya leads to scenic natural landscapes. The Trawas and Pacet highlands in Mojokerto, along with Prigen in Pasuruan, provide cool mountain breezes, nature cafes, and cascading waterfalls.</p>
+    <p>If you prefer coastal scenery, the Wonorejo Mangrove Ecotourism area in East Surabaya, or trips to Gresik and Madura across the Suramadu Bridge, make memorable Sunday road trips with fellow students before returning to weekday academic life on Monday.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Wisata+Weekend',
     categoryId: 5,
-    categorySlug: 'kampus-sekitar',
+    categorySlug: 'jelajah-kota',
+    subcategorySlug: 'wisata-budaya',
     tags: ['wisata', 'hiburan'],
+    tagsEn: ['travel', 'leisure'],
     isPinned: false,
     isPopular: false,
     publishedAt: '2026-08-30T12:00:00Z'
@@ -667,12 +777,12 @@ export const articles: Article[] = [
     title: 'Cara Mengurus Visa Pelajar (VITAS) Indonesia',
     slug: 'cara-mengurus-visa-pelajar',
     excerpt: 'Panduan langkah demi langkah bagi calon mahasiswa asing dalam mengurus Visa Tinggal Terbatas (VITAS) untuk keperluan studi.',
-    content: `<p>Welcome to Universitas Airlangga! For international students who have been accepted into our degree or exchange programs, securing the correct visa is the most critical step before your arrival in Indonesia. You are required to obtain a Student Visa, technically known as VITAS (Visa Tinggal Terbatas) for studying, which will later be converted to an ITAS (Izin Tinggal Terbatas) upon your arrival.</p>
-    <h2>The Study Permit Requirement</h2>
-    <p>Before applying for the visa, Universitas Airlangga will assist you in obtaining a Study Permit (Izin Belajar) from the Ministry of Education and Culture in Jakarta. You must provide the Airlangga Global Engagement (AGE) office with required documents including your passport bio-page (valid for at least 18 months), health certificate, financial guarantee statement, and a statement letter stating you will not work while studying.</p>
-    <h2>E-Visa Application Process</h2>
-    <p>Once the Study Permit is issued, the university (acting as your sponsor) will apply for your E-Visa online through the Directorate General of Immigration portal. Once approved, the E-Visa will be sent to your email in PDF format. You must print this document and present it to the immigration officers at the airport upon entering Indonesia. Please DO NOT enter Indonesia using a Tourist/Visa on Arrival (VoA), as it cannot be converted into a Student Visa.</p>
-    <p>Within 7 days of your arrival in Surabaya, you must visit the local Immigration Office, accompanied by AGE staff, to take your biometric data and photos for the issuance of your physical ITAS card. This permit must be renewed annually throughout your study period.</p>`,
+    content: `<p>Selamat datang di Universitas Airlangga! Bagi mahasiswa asing yang telah diterima di program sarjana, pertukaran, atau program studi lainnya, mengurus visa adalah langkah paling penting sebelum datang ke Indonesia. Anda wajib memiliki Visa Pelajar, yang secara teknis dikenal sebagai VITAS (Visa Tinggal Terbatas) untuk keperluan studi, dan nantinya akan diubah menjadi ITAS (Izin Tinggal Terbatas) setelah kedatangan.</p>
+    <h2>Persyaratan Izin Belajar</h2>
+    <p>Sebelum mengajukan visa, Universitas Airlangga akan membantu Anda memperoleh Izin Belajar dari Kementerian Pendidikan dan Kebudayaan di Jakarta. Anda harus menyerahkan dokumen ke kantor Airlangga Global Engagement (AGE), seperti halaman data paspor yang masih berlaku minimal 18 bulan, surat keterangan kesehatan, pernyataan jaminan finansial, serta surat pernyataan bahwa Anda tidak akan bekerja saat menempuh studi.</p>
+    <h2>Proses Pengajuan E-Visa</h2>
+    <p>Setelah Izin Belajar diterbitkan, universitas sebagai sponsor akan mengajukan E-Visa secara online melalui portal Direktorat Jenderal Imigrasi. Setelah disetujui, E-Visa akan dikirim ke email Anda dalam format PDF. Anda harus mencetak dokumen ini dan menunjukkan kepada petugas imigrasi saat masuk ke Indonesia. Hindari masuk ke Indonesia dengan Visa Turis atau Visa on Arrival (VoA), karena visa tersebut tidak bisa diubah menjadi Visa Pelajar.</p>
+    <p>Dalam waktu 7 hari setelah kedatangan di Surabaya, Anda harus datang ke Kantor Imigrasi setempat dengan didampingi staf AGE untuk mengambil data biometrik dan foto bagi penerbitan kartu ITAS fisik. Izin ini harus diperpanjang setiap tahun selama masa studi Anda.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Visa+Guide',
     categoryId: 7,
     categorySlug: 'panduan-internasional',
@@ -686,13 +796,13 @@ export const articles: Article[] = [
     title: 'Panduan Akomodasi untuk Mahasiswa Asing',
     slug: 'panduan-akomodasi-mahasiswa-asing',
     excerpt: 'Pilihan tempat tinggal yang aman dan nyaman bagi mahasiswa internasional di sekitar kampus UNAIR.',
-    content: `<p>Finding comfortable and safe accommodation is essential for a successful study abroad experience. Universitas Airlangga provides several housing options tailored to the needs of our international student community, ranging from on-campus dormitories to off-campus private apartments.</p>
-    <h2>On-Campus Dormitory (Asrama Mahasiswa)</h2>
-    <p>The university operates dormitories located within Campus C. This is the most affordable and convenient option, especially for newly arrived students. The international student wing offers double-occupancy rooms equipped with basic furniture, air conditioning, and shared bathrooms. Living in the dormitory is an excellent way to immerse yourself in the local student life and make Indonesian friends. However, spaces are limited and must be booked months in advance through the AGE office.</p>
-    <h2>Off-Campus Options: Kost and Apartments</h2>
-    <p>For more privacy, many international students opt for "Kost Exclusive" (private boarding houses) located around Campus B and C. These typically offer fully furnished en-suite single rooms with AC, Wi-Fi, laundry service, and 24-hour security. Monthly rents range from IDR 1,500,000 to IDR 3,000,000 depending on the facilities.
-    Alternatively, several high-rise apartment complexes (such as Puncak Dharmahusada or Educity) are located a short commute away. Renting a studio apartment offers full privacy with access to swimming pools and gyms, costing around IDR 3,000,000 to IDR 5,000,000 per month.</p>
-    <p>The AGE International Student Support team is always ready to assist you with housing recommendations, translating lease agreements, and communicating with landlords to ensure you find a place that feels like a home away from home.</p>`,
+    content: `<p>Menemukan tempat tinggal yang aman dan nyaman adalah hal penting dalam pengalaman studi di luar negeri. Universitas Airlangga menyediakan beberapa pilihan hunian yang disesuaikan dengan kebutuhan mahasiswa internasional, mulai dari asrama di dalam kampus hingga apartemen atau kost di luar kampus.</p>
+    <h2>Asrama di Dalam Kampus</h2>
+    <p>Universitas Airlangga memiliki asrama yang berada di dalam Kampus C. Ini menjadi pilihan paling terjangkau dan praktis, terutama bagi mahasiswa baru yang baru tiba. Blok khusus mahasiswa internasional biasanya menyediakan kamar berisi dua orang dengan furnitur dasar, AC, dan kamar mandi bersama. Tinggal di asrama adalah cara yang baik untuk merasakan kehidupan mahasiswa lokal dan menjalin pertemanan dengan mahasiswa Indonesia. Namun, kapasitasnya terbatas dan perlu dipesan jauh-jauh hari melalui kantor AGE.</p>
+    <h2>Pilihan di Luar Kampus: Kost dan Apartemen</h2>
+    <p>Bagi yang menginginkan privasi lebih, banyak mahasiswa internasional memilih kost eksklusif yang berada di sekitar Kampus B dan C. Kost ini biasanya menyediakan kamar single dengan fasilitas lengkap seperti AC, Wi-Fi, layanan laundry, dan keamanan 24 jam. Biaya sewa bulanan berkisar antara Rp 1.500.000 hingga Rp 3.000.000 tergantung fasilitas yang ditawarkan.
+    Selain itu, beberapa apartemen bertingkat seperti Puncak Dharmahusada atau Educity juga tidak jauh dari kampus. Menyewa studio apartemen memberi privasi lebih lengkap dengan akses kolam renang dan gym, dengan biaya sekitar Rp 3.000.000 hingga Rp 5.000.000 per bulan.</p>
+    <p>Tim Dukungan Mahasiswa Internasional AGE selalu siap membantu Anda dengan rekomendasi hunian, menerjemahkan perjanjian sewa, dan berkomunikasi dengan pemilik rumah agar Anda menemukan tempat yang terasa seperti rumah kedua.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Accommodation',
     categoryId: 7,
     categorySlug: 'panduan-internasional',
@@ -706,15 +816,15 @@ export const articles: Article[] = [
     title: 'Tips Hidup di Surabaya untuk Mahasiswa Internasional',
     slug: 'tips-hidup-surabaya-internasional',
     excerpt: 'Informasi praktis tentang cuaca, transportasi, dan cara beradaptasi dengan ritme kehidupan di kota pahlawan.',
-    content: `<p>Surabaya is Indonesia's second-largest city—a bustling, dynamic metropolis that serves as the commercial hub of Eastern Indonesia. Adjusting to life in a new city can be overwhelming, but with a few practical tips, you will quickly adapt to the "Suroboyoan" rhythm of life.</p>
-    <h2>Weather and Clothing</h2>
-    <p>Surabaya is known for its hot and humid tropical climate year-round. Average daytime temperatures hover around 32-35°C. Light, breathable cotton clothing is highly recommended for daily wear. However, out of respect for local culture and university regulations, please ensure you dress modestly on campus (no shorts, tank tops, or sandals). When the rainy season hits (typically November to April), always carry an umbrella or a raincoat, as sudden, heavy downpours are common.</p>
-    <h2>Getting Around the City</h2>
-    <p>While the city's public transport system is improving (with the Suroboyo Bus), the most reliable and popular way to navigate the city is via ride-hailing apps like Gojek or Grab. These apps are lifesavers for international students—you can book a motorcycle taxi (ojek) for short solo trips, a car for group travel, or even order food delivery (GoFood/GrabFood) directly to your dorm room. Setting up the app and linking it to a local e-wallet (like Gopay or OVO) should be one of your first tasks upon arrival.</p>
-    <p>Surabaya people are famously warm, straightforward, and welcoming. Don't be shy to use basic Indonesian greetings (like "Terima kasih" for thank you or "Permisi" for excuse me). A simple smile will go a long way in navigating daily interactions at the local markets or food stalls.</p>`,
+    content: `<p>Surabaya adalah kota terbesar kedua di Indonesia dan kota yang dinamis, ramai, serta menjadi pusat ekonomi di wilayah Indonesia Timur. Menyesuaikan diri dengan kehidupan di kota baru memang terasa berat, tetapi dengan beberapa tips praktis, Anda akan cepat beradaptasi dengan ritme hidup "Suroboyoan".</p>
+    <h2>Cuaca dan Pakaian</h2>
+    <p>Surabaya dikenal dengan iklim tropis yang panas dan lembap sepanjang tahun. Suhu pada siang hari rata-rata sekitar 32-35°C. Pakaian ringan berbahan katun sangat disarankan untuk dipakai sehari-hari. Namun, demi menghormati budaya lokal dan peraturan kampus, pastikan Anda berpakaian sopan saat berada di kampus, seperti tidak memakai celana pendek, tank top, atau sandal jepit. Saat musim hujan datang, biasanya pada bulan November hingga April, selalu bawa payung atau jas hujan karena hujan deras bisa terjadi tiba-tiba.</p>
+    <h2>Bergerak di Dalam Kota</h2>
+    <p>Meski sistem transportasi umum kota terus berkembang dengan adanya Suroboyo Bus, cara paling andal dan populer untuk berpindah tempat adalah melalui aplikasi ojek online seperti Gojek atau Grab. Aplikasi ini sangat membantu mahasiswa internasional—Anda bisa memesan ojek untuk perjalanan solo singkat, mobil untuk perjalanan berkelompok, atau memesan makanan langsung ke kamar kos melalui GoFood atau GrabFood. Mengunduh aplikasi dan menghubungkannya dengan dompet digital lokal seperti Gopay atau OVO adalah salah satu hal yang sebaiknya dilakukan segera setelah tiba.</p>
+    <p>Warga Surabaya dikenal hangat, lugas, dan ramah. Jangan ragu untuk memakai sapaan sederhana dalam bahasa Indonesia seperti “Terima kasih” atau “Permisi”. Senyuman dan sikap sopan akan sangat membantu saat berinteraksi di pasar atau warung lokal.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Life+in+Surabaya',
-    categoryId: 7,
-    categorySlug: 'panduan-internasional',
+    categoryId: 8,
+    categorySlug: 'kebutuhan-harian',
     tags: ['tips', 'living'],
     isPinned: false,
     isPopular: true,
@@ -725,12 +835,12 @@ export const articles: Article[] = [
     title: 'Layanan Bantuan Mahasiswa Internasional UNAIR',
     slug: 'layanan-bantuan-mahasiswa-internasional',
     excerpt: 'Daftar layanan administrasi, konseling, dan program buddy yang difasilitasi oleh Airlangga Global Engagement.',
-    content: `<p>Adjusting to a new academic system and cultural environment presents unique challenges. Recognizing this, Airlangga Global Engagement (AGE) has established a comprehensive support system designed specifically to ensure international students have a smooth and enriching academic journey at Universitas Airlangga.</p>
-    <h2>The International Student Buddy Program</h2>
-    <p>One of our most successful initiatives is the Buddy Program. Upon confirmation of enrollment, you will be paired with a local Indonesian student buddy. Your buddy is a current student volunteer who will contact you before you arrive, pick you up from Juanda International Airport, help you settle into your accommodation, assist with SIM card registration, and guide you through the initial campus orientation and class registration process. They are your first friend and informal guide to Surabaya.</p>
-    <h2>Administrative and Wellbeing Support</h2>
-    <p>The AGE International Office serves as a one-stop center for all your administrative needs, including visa extensions, study permit renewals, and issuing official university letters. Furthermore, if you experience culture shock, academic stress, or personal difficulties, the university provides free, confidential psychological counseling services with English-speaking psychologists at the Help Center, located at Campus C.</p>
-    <p>We also regularly organize cultural trips, international food festivals, and language exchange sessions to foster a tight-knit international community and promote intercultural exchange between foreign and local students.</p>`,
+    content: `<p>Menyesuaikan diri dengan sistem akademik dan lingkungan budaya baru memang menghadirkan tantangan tersendiri. Menyadari hal ini, Airlangga Global Engagement (AGE) membangun sistem dukungan yang komprehensif agar mahasiswa internasional dapat menjalani studi dengan lancar dan pengalaman yang lebih kaya di Universitas Airlangga.</p>
+    <h2>Program Buddy Mahasiswa Internasional</h2>
+    <p>Salah satu inisiatif unggulan kami adalah Program Buddy. Setelah konfirmasi penerimaan, Anda akan dipasangkan dengan seorang mahasiswa Indonesia sebagai buddy. Buddy ini adalah relawan mahasiswa yang akan menghubungi Anda sebelum kedatangan, menjemput di Bandara Internasional Juanda, membantu menata tempat tinggal, mendampingi pendaftaran kartu SIM, dan membimbing Anda saat orientasi awal kampus serta proses pendaftaran mata kuliah. Mereka adalah teman pertama dan pemandu informal Anda di Surabaya.</p>
+    <h2>Dukungan Administrasi dan Kesejahteraan</h2>
+    <p>Kantor Internasional AGE berperan sebagai pusat layanan satu atap untuk kebutuhan administrasi Anda, termasuk perpanjangan visa, pembaruan izin belajar, dan penerbitan surat resmi universitas. Selain itu, jika Anda mengalami culture shock, stres akademik, atau kesulitan pribadi, universitas menyediakan layanan konseling psikologis yang bersifat rahasia dan gratis dengan psikolog yang bisa berbahasa Inggris di Help Center yang berada di Kampus C.</p>
+    <p>Kami juga rutin menyelenggarakan perjalanan budaya, festival kuliner internasional, dan sesi pertukaran bahasa untuk menjaga komunitas internasional tetap solid serta mendorong pertukaran budaya antara mahasiswa asing dan lokal.</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Student+Support',
     categoryId: 7,
     categorySlug: 'panduan-internasional',
@@ -744,19 +854,766 @@ export const articles: Article[] = [
     title: 'Mengenal Budaya dan Kuliner Khas Jawa Timur',
     slug: 'budaya-kuliner-jawa-timur',
     excerpt: 'Pengantar singkat mengenai adat istiadat sosial dan makanan tradisional yang wajib dicoba selama berada di Surabaya.',
-    content: `<p>Your study abroad experience is not complete without delving into the rich cultural tapestry and culinary wonders of East Java. Surabaya, as the capital, offers a melting pot of Javanese, Madurese, Arab, and Chinese cultures, resulting in unique traditions and a legendary food scene.</p>
-    <h2>Must-Try Local Delicacies</h2>
-    <p>Surabayan cuisine is known for its bold, savory, and often spicy flavors. You must try the city's iconic dish, <strong>Rawon</strong>—a rich, black beef soup flavored with keluak nuts, usually served with salted egg and beansprouts. Another staple is <strong>Rujak Cingur</strong>, a unique salad consisting of vegetables, fruits, and boiled cow snout, all drenched in a pungent, sweet, and spicy fermented shrimp paste (petis) sauce. For late-night cravings, join the locals at a street-side tent (warung) for a plate of <strong>Sego Sambal</strong> (rice with spicy chili paste and fried side dishes).</p>
-    <h2>Social Etiquette and Norms</h2>
-    <p>Indonesian culture places a high value on respect for elders and politeness in social interactions. It is customary to use your right hand for eating, giving, or receiving items, as the left hand is traditionally considered impolite for such actions. When addressing lecturers or staff, use formal titles such as "Bapak" (Mr.) or "Ibu" (Ms./Mrs.) followed by their name. Understanding and practicing these subtle social nuances will earn you great respect from the local community and enrich your intercultural experience.</p>
-    <p>The university frequently hosts cultural workshops where international students can learn to play traditional gamelan music, make batik, or practice traditional Javanese dance. We highly encourage you to participate in these events!</p>`,
+    content: `<p>Pengalaman studi di luar negeri Anda belum lengkap jika belum menggali kekayaan budaya dan sajian kuliner Jawa Timur. Surabaya sebagai ibu kota Provinsi Jawa Timur menyatukan beragam budaya, mulai Jawa, Madura, Arab, hingga Tionghoa, sehingga menciptakan tradisi unik dan cita rasa kuliner yang ikonik.</p>
+    <h2>Cicipan Kuliner Khas yang Wajib Dicoba</h2>
+    <p>Masakan Surabaya dikenal dengan cita rasa yang kaya, gurih, dan sering kali pedas. Anda wajib mencoba hidangan ikonik kota ini, yaitu <strong>Rawon</strong>—sup daging sapi berwarna hitam yang kaya rempah dan khas dengan penggunaan keluak, biasanya disajikan dengan telur asin dan tauge. Kuliner lainnya yang tidak boleh dilewatkan adalah <strong>Rujak Cingur</strong>, salad unik yang terdiri dari sayur, buah, dan cingur (hidung sapi yang direbus), serta disiram saus petis yang manis, pedas, dan beraroma kuat. Untuk kebutuhan makan malam, Anda bisa mampir ke warung pinggir jalan dan menikmati <strong>Sego Sambal</strong> dengan nasi, sambal pedas, dan lauk gorengan.</p>
+    <h2>Etika Sosial dan Tata Krama</h2>
+    <p>Budaya Indonesia sangat menghargai sikap hormat kepada orang yang lebih tua serta sopan santun dalam berinteraksi sosial. Biasanya, saat makan, memberi, atau menerima sesuatu, gunakan tangan kanan karena tangan kiri dianggap kurang sopan untuk aktivitas tersebut. Saat menyapa dosen atau staf, gunakan gelar formal seperti “Bapak” atau “Ibu” diikuti nama. Memahami dan menerapkan nuansa sosial ini akan membuat Anda lebih disegani oleh komunitas lokal dan memperkaya pengalaman lintas budaya Anda.</p>
+    <p>Universitas juga sering mengadakan workshop budaya di mana mahasiswa internasional bisa belajar memainkan gamelan, membuat batik, atau mempraktikkan tari tradisional Jawa. Sangat disarankan bagi Anda untuk ikut serta dalam kegiatan ini!</p>`,
     imageUrl: 'https://placehold.co/800x400/003366/white?text=Culture+Food',
-    categoryId: 7,
-    categorySlug: 'panduan-internasional',
+    categoryId: 8,
+    categorySlug: 'kebutuhan-harian',
     tags: ['culture', 'food'],
     isPinned: false,
     isPopular: false,
     publishedAt: '2026-08-25T12:00:00Z'
+  },
+  {
+    id: 36,
+    title: 'Perpustakaan dan Museum sebagai Ruang Belajar di Surabaya',
+    titleEn: 'Libraries and Museums as Learning Spaces in Surabaya',
+    slug: 'perpustakaan-museum-ruang-belajar-surabaya',
+    excerpt: 'Perpustakaan dan museum dapat menjadi ruang belajar di luar kelas untuk memperluas wawasan, menelusuri sumber, dan memahami sejarah serta kehidupan kota.',
+    excerptEn: 'Libraries and museums offer learning beyond the classroom, helping visitors broaden their knowledge, explore sources, and understand a city’s history and life.',
+    content: `<p>Belajar tidak hanya berlangsung di ruang kelas. Perpustakaan dan museum memberi kesempatan untuk mencari tahu lebih jauh melalui bacaan, koleksi, dan pengalaman melihat sumber secara langsung. Keduanya bisa menjadi tujuan belajar yang menarik bagi mahasiswa maupun masyarakat umum.</p>
+    <h2>Perpustakaan untuk Menelusuri Gagasan</h2>
+    <p>Di perpustakaan, pengunjung dapat memilih bacaan sesuai topik, membandingkan berbagai sudut pandang, dan menyusun pemahaman berdasarkan sumber yang lebih beragam. Perpustakaan Bank Indonesia, misalnya, berfokus pada ekonomi, moneter, dan perbankan, serta memiliki referensi tentang politik, pajak, ilmu eksakta, ilmu terapan, dan sastra. Ragam koleksi ini dapat menjadi pintu awal untuk mengenal hubungan antara kebijakan, masyarakat, dan kehidupan sehari-hari.</p>
+    <h2>Museum untuk Memahami Konteks</h2>
+    <p>Museum membantu pengunjung menghubungkan informasi dengan benda, cerita, dan konteks zamannya. Di Museum Surabaya, koleksi yang berkaitan dengan kehidupan sosial dan budaya kota dapat membantu pengunjung melihat bagaimana Surabaya berkembang dan bagaimana kehidupan warganya terbentuk. Mengamati koleksi sambil membaca keterangannya membuat sejarah terasa lebih dekat daripada sekadar menghafal tanggal dan nama.</p>
+    <h2>Menggabungkan Kunjungan dan Riset</h2>
+    <p>Kunjungan akan lebih bermakna jika dimulai dengan pertanyaan sederhana, seperti bagaimana perubahan kota memengaruhi kehidupan masyarakat atau bagaimana kebijakan ekonomi dirasakan dalam keseharian. Catat hal yang menarik di museum, lalu telusuri topik terkait melalui buku dan referensi di perpustakaan. Dengan cara ini, pengamatan dan bacaan saling melengkapi.</p>
+    <p>Perpustakaan dan museum bukan hanya tempat menyimpan buku atau benda bersejarah. Keduanya adalah ruang publik untuk bertanya, menghubungkan informasi, dan membangun pemahaman yang lebih utuh tentang kota.</p>`,
+    contentEn: `<p>Learning does not happen only in classrooms. Libraries and museums offer opportunities to explore ideas through reading, collections, and first-hand encounters with sources. Both can be engaging learning destinations for students and the wider community.</p>
+    <h2>Libraries for Exploring Ideas</h2>
+    <p>In a library, visitors can choose materials on a topic, compare different perspectives, and build understanding from a wider range of sources. The Bank Indonesia Library, for example, focuses on economics, monetary affairs, and banking, while also holding references on politics, taxation, exact sciences, applied sciences, and literature. Its varied collection can be a starting point for exploring how policy, society, and daily life connect.</p>
+    <h2>Museums for Understanding Context</h2>
+    <p>Museums help visitors connect information with objects, stories, and the context of their time. At the Surabaya Museum, collections related to the city’s social and cultural life can help visitors see how Surabaya developed and how the lives of its residents took shape. Observing an exhibit while reading its description can make history feel closer than memorizing dates and names alone.</p>
+    <h2>Combining Visits and Research</h2>
+    <p>A visit becomes more meaningful when it begins with a simple question, such as how urban change affects people’s lives or how economic policy is experienced day to day. Note what stands out at the museum, then explore related topics through books and references at the library. Observation and reading can then complement one another.</p>
+    <p>Libraries and museums are more than places for storing books or historic objects. They are public spaces for asking questions, connecting information, and building a fuller understanding of the city.</p>`,
+    imageUrl: 'https://placehold.co/800x400/003366/white?text=Library+and+Museum',
+    categoryId: 5,
+    categorySlug: 'jelajah-kota',
+    subcategorySlug: 'museum-galeri',
+    additionalSubcategorySlugs: ['perpustakaan-umum'],
+    tags: ['perpustakaan', 'museum', 'pembelajaran'],
+    tagsEn: ['library', 'museum', 'learning'],
+    isPinned: false,
+    isPopular: false,
+    publishedAt: '2026-09-28T09:00:00Z'
+  },
+  {
+    id: 37,
+    title: 'Tips Mencuci Pakaian agar Tetap Bersih dan Awet',
+    titleEn: 'Laundry Tips for Clean, Long-Lasting Clothes',
+    slug: 'tips-laundry-pakaian-bersih-awet',
+    excerpt: 'Kebiasaan sederhana saat mencuci dapat menjaga pakaian tetap bersih, warna tidak cepat pudar, dan proses laundry lebih hemat.',
+    excerptEn: 'Simple laundry habits can keep clothes clean, prevent colors from fading, and make washing more efficient.',
+    content: `<p>Mencuci pakaian secara teratur penting bagi mahasiswa, terutama saat tinggal di kos dengan ruang dan waktu terbatas. Kebiasaan mencuci yang tepat membantu pakaian lebih awet sekaligus mencegah bau apek dan warna cepat pudar.</p>
+    <h2>Pisahkan dan Periksa Pakaian</h2>
+    <p>Pisahkan pakaian putih dari pakaian berwarna, dan kelompokkan bahan yang mudah luntur atau membutuhkan perlakuan khusus. Periksa label perawatan sebelum mencuci. Kosongkan saku, tutup ritsleting, dan balik pakaian berwarna gelap atau bercetak agar permukaannya lebih terlindungi.</p>
+    <h2>Gunakan Deterjen dan Mesin Secukupnya</h2>
+    <p>Ikuti takaran deterjen pada kemasan; terlalu banyak deterjen tidak membuat pakaian lebih bersih dan dapat meninggalkan residu. Jangan memenuhi tabung mesin sampai terlalu padat karena pakaian perlu ruang untuk bergerak. Pilih siklus pencucian yang sesuai dengan jenis kain dan tingkat kotornya.</p>
+    <h2>Keringkan dengan Tuntas</h2>
+    <p>Segera keluarkan pakaian setelah siklus selesai agar tidak lembap terlalu lama. Jemur di tempat yang memiliki sirkulasi udara baik, dan pastikan pakaian benar-benar kering sebelum dilipat atau disimpan. Jika menggunakan layanan drop-off, pisahkan pakaian yang perlu perlakuan khusus dan sampaikan instruksi dengan jelas.</p>
+    <p>Membuat jadwal mencuci mingguan dan menangani noda sesegera mungkin juga membantu pekerjaan laundry terasa lebih ringan dan pakaian siap dipakai saat dibutuhkan.</p>`,
+    contentEn: `<p>Regular laundry is important for students, especially when living in a boarding house with limited space and time. Good washing habits help clothes last longer while preventing musty odors and fading.</p>
+    <h2>Sort and Check Your Clothes</h2>
+    <p>Separate whites from colored clothes, and group fabrics that may bleed or need special care. Check the care label before washing. Empty pockets, zip up fasteners, and turn dark or printed garments inside out to protect their surfaces.</p>
+    <h2>Use the Right Amount of Detergent</h2>
+    <p>Follow the detergent instructions; using too much does not make clothes cleaner and can leave residue. Do not overfill the washer, since clothes need room to move. Choose a cycle that suits the fabric and how soiled it is.</p>
+    <h2>Dry Clothes Thoroughly</h2>
+    <p>Remove clothes promptly when the cycle ends so they are not left damp. Hang them somewhere with good airflow, and make sure they are completely dry before folding or storing. For drop-off laundry, separate items that need special care and clearly explain your instructions.</p>
+    <p>A weekly laundry schedule and treating stains promptly can also make washing less of a chore and ensure clothes are ready when you need them.</p>`,
+    imageUrl: 'https://placehold.co/800x400/003366/white?text=Laundry+Tips',
+    categoryId: 8,
+    categorySlug: 'kebutuhan-harian',
+    subcategorySlug: 'laundry',
+    tags: ['laundry', 'tips', 'pakaian'],
+    tagsEn: ['laundry', 'tips', 'clothing'],
+    isPinned: false,
+    isPopular: false,
+    publishedAt: '2026-09-28T10:00:00Z'
+  },
+  {
+    id: 38,
+    title: 'Tips Belanja Kebutuhan Sehari-hari dengan Hemat',
+    titleEn: 'Tips for Budget-Friendly Everyday Shopping',
+    slug: 'tips-belanja-kebutuhan-sehari-hari',
+    excerpt: 'Rencanakan belanja, atur anggaran, dan pilih barang dengan cermat agar kebutuhan harian terpenuhi tanpa pengeluaran berlebihan.',
+    excerptEn: 'Plan your shopping, set a budget, and choose items carefully to cover daily needs without overspending.',
+    content: `<p>Belanja kebutuhan sehari-hari akan lebih mudah dikendalikan jika dilakukan dengan rencana. Bagi mahasiswa yang mengatur uang bulanan, beberapa langkah sederhana dapat membantu menghindari belanja impulsif dan mengurangi bahan yang terbuang.</p>
+    <h2>Buat Daftar dan Tetapkan Anggaran</h2>
+    <p>Periksa persediaan di kamar atau dapur sebelum berangkat, lalu catat barang yang benar-benar perlu dibeli. Tetapkan batas belanja sesuai anggaran mingguan atau bulanan. Daftar belanja membantu menjaga fokus dan memudahkan Anda menunda barang yang belum dibutuhkan.</p>
+    <h2>Bandingkan Harga dan Ukuran</h2>
+    <p>Jangan hanya melihat harga pada kemasan. Bandingkan harga per satuan atau ukuran agar tahu pilihan yang lebih ekonomis. Membeli ukuran besar bisa lebih hemat untuk barang yang rutin digunakan, tetapi pastikan jumlahnya dapat dihabiskan sebelum kedaluwarsa atau rusak.</p>
+    <h2>Periksa Kualitas dan Tanggal Kedaluwarsa</h2>
+    <p>Untuk bahan makanan, pilih produk yang kondisinya baik dan periksa tanggal kedaluwarsa. Sesuaikan jumlah bahan segar dengan rencana makan dan kapasitas penyimpanan. Simpan barang yang lebih dahulu dibeli di bagian depan agar digunakan lebih dulu.</p>
+    <p>Jika memungkinkan, susun menu sederhana untuk beberapa hari. Dengan begitu, belanja menjadi lebih terarah, kebutuhan pokok tidak terlewat, dan pengeluaran harian lebih mudah dipantau.</p>`,
+    contentEn: `<p>Everyday shopping is easier to manage when you have a plan. For students keeping track of a monthly budget, a few simple steps can help avoid impulse purchases and reduce waste.</p>
+    <h2>Make a List and Set a Budget</h2>
+    <p>Check your room or kitchen supplies before leaving, then write down what you actually need. Set a spending limit based on your weekly or monthly budget. A list helps you stay focused and makes it easier to postpone items you do not need yet.</p>
+    <h2>Compare Prices and Sizes</h2>
+    <p>Do not look only at the price on the package. Compare the unit price or quantity to find better value. Larger packages may save money for items you use regularly, but make sure you can use them before they expire or spoil.</p>
+    <h2>Check Quality and Expiration Dates</h2>
+    <p>For groceries, choose items in good condition and check expiration dates. Match the quantity of fresh ingredients to your meal plan and storage capacity. Keep older purchases at the front so they are used first.</p>
+    <p>When possible, plan a simple menu for a few days. This makes shopping more focused, helps you remember essentials, and makes daily spending easier to track.</p>`,
+    imageUrl: 'https://placehold.co/800x400/003366/white?text=Shopping+Tips',
+    categoryId: 8,
+    categorySlug: 'kebutuhan-harian',
+    subcategorySlug: 'belanja-harian',
+    tags: ['belanja', 'hemat', 'kebutuhan harian'],
+    tagsEn: ['shopping', 'budgeting', 'daily needs'],
+    isPinned: false,
+    isPopular: false,
+    publishedAt: '2026-09-28T11:00:00Z'
+  }
+];
+
+export const places: Place[] = [
+  {
+    id: 1,
+    name: "Depot Tanjung Api",
+    nameEn: "Depot Tanjung Api",
+    slug: "depot-tanjung-api",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "kuliner",
+    address: "Jl. Walikota Mustajab No. 41, Surabaya",
+    priceRange: "Rp 12.000 - 25.000",
+    priceRangeEn: "IDR 12,000-25,000",
+    hours: "10.00 - 23.30 WIB",
+    hoursEn: "10:00-23:30 WIB",
+    description: "Depot legendaris favorit mahasiswa UNAIR, terkenal dengan nasi campur dan sambal terasinya yang pedas menggigit. Porsi besar, tempat luas, cocok buat makan rame-rame.",
+    descriptionEn: "A legendary culinary depot favored by UNAIR students, renowned for its hearty mixed rice and spicy chili sambal. Generous portions and spacious seating, great for group dining.",
+    menuSections: [
+      {
+        title: "Minuman",
+        titleEn: "Drinks",
+        items: [
+          "Es Pisang Ijo - Rp27.272",
+          "Es Susu Klepon - Rp22.727",
+          "Es Susu Ketan Hitam - Rp22.727",
+          "Es Susu Kacang Hijau - Rp22.727",
+          "Kopi Tubruk - Rp9.090",
+          "Kopi Saring - Rp10.909",
+          "Kopi Susu Panas - Rp13.636",
+          "Kopi Butter - Rp16.363",
+          "Es Kopi Susu - Rp20.000",
+          "Es Cokelat - Rp15.454",
+          "Hot Cokelat - Rp15.454",
+          "Air Mineral - Rp7.272"
+        ]
+      },
+      {
+        title: "Teh & Minuman Segar",
+        titleEn: "Tea & Refreshments",
+        items: [
+          "Es Teh Peach - Rp16.363",
+          "Es Teh Leci - Rp16.363",
+          "Es Teh Strawberry - Rp16.363",
+          "Es Lemon Tea - Rp16.363",
+          "Es Markisa - Rp16.363",
+          "Es Teh Tarik - Rp16.363",
+          "Es Susu Cincau - Rp18.181",
+          "Es Cendol - Rp20.000",
+          "Es Kopi Susu Gula Aren - Rp22.727",
+          "Mix Berry - Rp20.000",
+          "Winter Berry - Rp18.181",
+          "Refresh Juice - Rp16.363",
+          "Pea Berry - Rp18.181",
+          "Spring Berry - Rp18.181",
+          "Pink Berry - Rp22.727",
+          "Tropical Berry - Rp22.727"
+        ]
+      },
+      {
+        title: "Camilan",
+        titleEn: "Snacks",
+        items: [
+          "Tekwan Palembang - Rp22.727",
+          "Pempek - Rp36.363",
+          "Otak-otak - Rp31.818",
+          "Pempek Kriuk - Rp31.818",
+          "Tahu Walik - Rp22.727",
+          "Bakso Goreng - Rp22.727",
+          "Udang Keju - Rp22.727",
+          "Lumpia Kulit Tahu - Rp21.818",
+          "Cheeseroll - Rp24.545",
+          "Peanut Butter Toast - Rp21.818",
+          "Kaya Toast Gandum - Rp18.181",
+          "Kaloci - Rp18.181",
+          "Tape Roll - Rp18.181",
+          "Cakwe Udang - Rp22.727",
+          "Gyoza - Rp22.727",
+          "Cireng - Rp20.000"
+        ]
+      },
+      {
+        title: "Makanan Utama",
+        titleEn: "Main Dishes",
+        items: [
+          "Nasi Goreng Szechuan - Rp30.000",
+          "Nasi Goreng Tanjung Api - Rp24.545",
+          "Nasi Goreng Cumi - Rp26.363",
+          "Nasi Goreng Cakalang Pete - Rp28.181",
+          "Bakmie Goreng - Rp24.545",
+          "Kwetiauw Kuah Sapi - Rp28.181",
+          "Kwetiauw Goreng - Rp27.272",
+          "Mie Garlic Spesial - Rp25.454",
+          "Mie Garlic - Rp12.727",
+          "Mie Garlic Charsiu - Rp17.272",
+          "Mie Garlic Sapi - Rp22.727",
+          "Mie Szechuan Sapi - Rp25.454",
+          "Mie Szechuan Spesial - Rp29.090",
+          "Mie Szechuan Charsiu - Rp20.000",
+          "Mie Szechuan - Rp16.363",
+          "Mie Kuah Kari - Rp27.272",
+          "Misoa Kuah Ayam Bawang - Rp20.000",
+          "Nasi Daging Sambal Bawang - Rp21.818",
+          "Nasi Daging Sambal Ijo - Rp21.818",
+          "Nasi Cakalang Sambal Bawang - Rp21.818",
+          "Nasi Cakalang Sambal Ijo - Rp21.818",
+          "Nasi Cumi Sambal Bawang - Rp21.818",
+          "Nasi Cumi Sambal Ijo - Rp21.818",
+          "Nasi Udang Sambal Bawang - Rp21.818",
+          "Nasi Udang Sambal Ijo - Rp21.818",
+          "Nasi Ayam Ngohiong - Rp21.818"
+        ]
+      }
+    ],
+    tags: ["nasi campur", "pedas", "porsi besar"],
+    tagsEn: ["mixed rice", "spicy", "large portion"]
+  },
+  {
+    id: 2,
+    name: "Perpustakaan Bank Indonesia",
+    nameEn: "Bank Indonesia Library",
+    slug: "perpustakaan-bank-indonesia",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "perpustakaan-umum",
+    address: "Jl. Taman Mayangkara No. 6, Darmo, Surabaya",
+    hours: "Senin-Jumat, 08.00-16.30 WIB",
+    hoursEn: "Monday-Friday, 08:00-16:30 WIB",
+    description: "Perpustakaan Bank Indonesia berfokus pada bidang ekonomi, moneter, dan perbankan, serta menyediakan banyak referensi tentang politik, pajak, ilmu eksakta, dan ilmu terapan. Koleksinya juga mencakup beberapa novel sastra, termasuk karya Ajip Rosidi dan Pramoedya Ananta Toer.",
+    descriptionEn: "The Bank Indonesia Library focuses on economics, monetary affairs, and banking, and also offers many references on politics, taxation, exact sciences, and applied sciences. Its collection includes selected literary novels, including works by Ajip Rosidi and Pramoedya Ananta Toer.",
+    infoSections: [
+      {
+        title: "Koleksi",
+        titleEn: "Collections",
+        items: [
+          "Fokus koleksi ekonomi, moneter, dan perbankan",
+          "Referensi politik, pajak, ilmu eksakta, dan ilmu terapan",
+          "Koleksi novel sastra, termasuk karya Ajip Rosidi dan Pramoedya Ananta Toer"
+        ],
+        itemsEn: [
+          "Collections focused on economics, monetary affairs, and banking",
+          "References on politics, taxation, exact sciences, and applied sciences",
+          "Selected literary novels, including works by Ajip Rosidi and Pramoedya Ananta Toer"
+        ]
+      }
+    ],
+    tags: ["perpustakaan", "ekonomi", "moneter", "sastra"],
+    tagsEn: ["library", "economics", "monetary", "literature"]
+  },
+  {
+    id: 3,
+    name: "Karbs Social - Bakery & Cafe",
+    nameEn: "Karbs Social - Bakery & Cafe",
+    slug: "karbs",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "kuliner",
+    address: "Jl. Opak No. 52, Surabaya",
+    hours: "07.00 - 22.00 WIB",
+    hoursEn: "07:00-22:00 WIB",
+    description: "Karbs Social adalah tempat berkumpul di Opak, Surabaya. Tempat ini merupakan perpaduan antara Karbs Bakehouse Citraland dan Karbs Café Araya dalam satu ruang yang hangat dan ramah. Karbs Social menyediakan live music dua kali seminggu serta mini playground untuk anak-anak. Tempat ini cocok untuk berkumpul bersama keluarga, teman, maupun rekan kerja.",
+    descriptionEn: "Karbs Social is a gathering place in Opak, Surabaya, combining Karbs Bakehouse Citraland and Karbs Café Araya in one warm and welcoming space. It offers live music twice a week and a mini playground for children, making it a great place to gather with family, friends, or colleagues.",
+    menuSections: [
+      {
+        title: "Menu Makanan",
+        titleEn: "Food",
+        items: [
+          "Caesar Salad - Rp72.000",
+          "Waldorf Salad - Rp83.000",
+          "Truffle Mushroom Soup - Rp55.000",
+          "Truffle Fries - Rp62.000",
+          "Wonton Chili Oil - Rp52.000",
+          "Thai Popcorn Chicken - Rp52.000",
+          "Animal Fries - Rp62.000",
+          "Crispy Baby Corn - Rp45.000",
+          "Spicy Edamame - Rp45.000",
+          "Nachos - Rp62.000",
+          "Aussie Breakfast - Rp93.000",
+          "British Breakfast - Rp93.000",
+          "Mushroom Toast - Rp68.000",
+          "Shakshouka - Rp83.000",
+          "Beef Quesadilla - Rp83.000",
+          "Pesto Avo Toast - Rp68.000",
+          "Tuna Melt - Rp83.000",
+          "Patty Melt - Rp98.000",
+          "Chicken Pesto Panini - Rp83.000",
+          "Grilled Cheese Sandwich - Rp75.000",
+          "Tuna Avocado - Rp55.000",
+          "Pho Saigon Special - Rp85.000",
+          "Misoa Ramen - Rp65.000",
+          "Beef Dry Pho - Rp75.000",
+          "Mie Ayam Jakarta - Rp61.000",
+          "Lasagna - Rp94.000",
+          "Penne Rosé - Rp83.000 / Rp94.000",
+          "Sambal Matah Aglio Olio - Rp83.000",
+          "Chicken Steak - Rp88.000",
+          "Steak Hamburg - Rp115.000",
+          "Japanese Hamburg - Rp88.000",
+          "Nasi Goreng Sate - Rp69.000",
+          "Loco Moco - Rp88.000",
+          "Beef Bulgogi Rice - Rp83.000",
+          "XO Fried Rice - Rp61.000",
+          "Thai Chicken Rice - Rp55.000",
+          "Chiffon Rice Pad Krapao - Rp61.000",
+          "Little Bolognaise - Rp60.000",
+          "Mini Fisherman - Rp60.000",
+          "Teriyaki Kid - Rp60.000"
+        ]
+      },
+      {
+        title: "Dessert",
+        titleEn: "Dessert",
+        items: [
+          "Goguma Brulee - Rp58.000",
+          "Dubai Chocolate Parfait - Rp72.000",
+          "Classic Tiramisu - Rp77.000",
+          "Strawberry Tiramisu - Rp77.000",
+          "Opera Balls - Rp72.000",
+          "Strawberry Mochi Cheesecake - Rp83.000",
+          "Chocolate Mochi Cheesecake - Rp83.000",
+          "Olive & Parm Parfait - Rp55.000",
+          "Ricotta Toast - Rp50.000",
+          "Pistachio Matcha - Rp94.000",
+          "Banana Bread Royale - Rp72.000",
+          "Creme Caramel Toast - Rp61.000",
+          "London Lemon Cake - Rp65.000",
+          "Black Forest Mousse - Rp61.000"
+        ]
+      },
+      {
+        title: "Minuman",
+        titleEn: "Drinks",
+        items: [
+          "Pistachio Latte - Rp58.000",
+          "Strawberry Latte - Rp42.000",
+          "Honeycomb Latte - Rp42.000",
+          "Earl Grey Latte - Rp50.000",
+          "Hazelnut Latte - Rp55.000",
+          "Yuzu Americano - Rp39.000",
+          "Flat White - Rp34.000",
+          "Piccolo - Rp33.000",
+          "Americano - Rp38.000",
+          "Cappuccino - Rp38.000",
+          "Caffè Latte - Rp42.000",
+          "Mochaccino - Rp60.000",
+          "Dark Chocolate - Rp55.000",
+          "Milk Chocolate - Rp50.000",
+          "Iced Espresso - Rp33.000",
+          "Magic - Rp37.000",
+          "Affogato - Rp55.000",
+          "Hot Matcha Latte - Rp65.000 / Rp40.000",
+          "Iced Matcha Latte - Rp65.000 / Rp40.000",
+          "Matcha Raspberry - Rp50.000 / Rp45.000",
+          "Matchamisu - Rp75.000 / Rp70.000",
+          "Matcha Einspanner - Rp45.000 / Rp70.000",
+          "Dirty Matchamisu - Rp65.000 / Rp75.000",
+          "Matcha Pistachio - Rp80.000 / Rp55.000",
+          "Watermelon Mint - Rp38.000",
+          "Virgin Mojito - Rp38.000",
+          "Longan Yuzu - Rp38.000",
+          "Lychee Jasmine - Rp38.000",
+          "Pink Lemonade - Rp38.000",
+          "Passion Grey - Rp38.000",
+          "Orange Juice - Rp45.000",
+          "Coca Cola - Rp25.000",
+          "Mineral Water - Rp18.000",
+          "Strawberry Glaze - Rp85.000",
+          "Coconut Cloud - Rp85.000",
+          "Chocolate Milkshake - Rp72.000",
+          "Cookie Monster Milkshake - Rp72.000",
+          "Korean Strawberry Milk - Rp50.000"
+        ]
+      }
+    ],
+    tags: ["keluarga", "live music", "playground"],
+    tagsEn: ["family-friendly", "live music", "playground"]
+  },
+  {
+    id: 4,
+    name: "USA Laundromat",
+    nameEn: "USA Laundromat",
+    slug: "usa-laundromat",
+    categorySlug: "kebutuhan-harian",
+    subcategorySlug: "laundry",
+    address: "Jl. Gubeng Jaya 2 No. 72, Surabaya",
+    hours: "Jam operasional mengikuti layanan yang tersedia",
+    hoursEn: "Opening hours vary by service",
+    description: "USA Laundromat menyediakan pilihan layanan yang praktis untuk kebutuhan mahasiswa, mulai dari self service untuk mencuci sendiri, drop off untuk layanan cuci dan kering, hingga setrika. Beberapa layanan dapat selesai dalam sehari, sehingga cocok untuk kebutuhan pakaian yang mendesak.",
+    descriptionEn: "USA Laundromat offers practical services for students, including self-service washing, drop-off washing and drying, and ironing. Some services can be completed within a day, making it a convenient option for urgent laundry needs.",
+    infoSections: [
+      {
+        title: "Layanan Laundry",
+        titleEn: "Laundry Services",
+        items: [
+          "Self service: mencuci pakaian sendiri",
+          "Drop off: pakaian dititipkan untuk dicuci dan dikeringkan",
+          "Layanan setrika",
+          "Beberapa layanan dapat selesai dalam sehari"
+        ],
+        itemsEn: [
+          "Self-service: wash your own clothes",
+          "Drop-off: leave clothes to be washed and dried",
+          "Ironing service",
+          "Some services can be completed within a day"
+        ]
+      }
+    ],
+    tags: ["laundry", "self service", "drop off", "setrika"],
+    tagsEn: ["laundry", "self-service", "drop-off", "ironing"]
+  },
+  {
+    id: 5,
+    name: "Depo Air Minum Biru Gubeng Kertajaya",
+    nameEn: "Biru Drinking Water Refill Depot, Gubeng Kertajaya",
+    slug: "depo-air-minum-biru-gubeng-kertajaya",
+    categorySlug: "kebutuhan-harian",
+    subcategorySlug: "belanja-harian",
+    address: "Jl. Gubeng Kertajaya 1G No. 35, Surabaya",
+    hours: "08.00 - 20.00 WIB",
+    hoursEn: "Daily, 08:00-20:00 WIB",
+    description: "Depo Air Minum Biru Gubeng Kertajaya menyediakan kebutuhan air minum harian untuk mahasiswa, penghuni kos, dan keluarga di sekitar Gubeng. Lokasinya berada di Jalan Gubeng Kertajaya 1G dan buka setiap hari pada pukul 08.00-20.00 WIB.",
+    descriptionEn: "Biru Drinking Water Refill Depot serves the daily drinking-water needs of students, boarding-house residents, and families in Gubeng. It is located on Jalan Gubeng Kertajaya 1G and is open daily from 08:00 to 20:00 WIB.",
+    infoSections: [
+      {
+        title: "Layanan Depo Air Minum",
+        titleEn: "Water Refill Services",
+        items: [
+          "Melayani isi ulang galon air minum",
+          "Menyediakan kebutuhan air minum harian",
+          "Buka setiap hari pukul 08.00-20.00 WIB"
+        ],
+        itemsEn: [
+          "Drinking-water gallon refills",
+          "Daily drinking-water supplies",
+          "Open daily from 08:00 to 20:00 WIB"
+        ]
+      }
+    ],
+    tags: ["galon", "air minum", "gubeng kertajaya"],
+    tagsEn: ["water gallons", "drinking water", "gubeng kertajaya"]
+  },
+  {
+    id: 6,
+    name: "Museum Surabaya (Gedung Siola)",
+    nameEn: "Surabaya Museum (Siola Building)",
+    slug: "museum-surabaya-siola",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "museum-galeri",
+    address: "Jl. Tunjungan No. 1-3, Surabaya",
+    priceRange: "Gratis",
+    priceRangeEn: "Free admission",
+    hours: "08.00-15.00 WIB",
+    hoursEn: "08:00-15:00 WIB, Tuesday-Sunday",
+    description: "Museum Surabaya berada di ujung Jalan Tunjungan, di dalam gedung eks-SIOLA yang dahulu bernama Gedung Whiteaway Laidlaw dan kini merupakan bangunan cagar budaya. Koleksinya berkaitan dengan kehidupan sosial dan budaya Kota Surabaya. Buka setiap Selasa hingga Minggu.",
+    descriptionEn: "Surabaya Museum is located at the end of Jalan Tunjungan, inside the former SIOLA building, once known as the Whiteaway Laidlaw Building and now a cultural heritage site. Its collections relate to the social and cultural life of Surabaya. Open Tuesday through Sunday.",
+    infoSections: [
+      {
+        title: "Informasi Museum",
+        titleEn: "Museum Information",
+        items: [
+          "Koleksi terkait kehidupan sosial dan budaya Kota Surabaya",
+          "Berada di gedung cagar budaya eks-SIOLA, dahulu bernama Gedung Whiteaway Laidlaw",
+          "Tiket masuk gratis",
+          "Buka setiap Selasa hingga Minggu"
+        ],
+        itemsEn: [
+          "Collections on the social and cultural life of Surabaya",
+          "Housed in the former SIOLA cultural heritage building, once known as the Whiteaway Laidlaw Building",
+          "Free admission",
+          "Open Tuesday through Sunday"
+        ]
+      }
+    ],
+    tags: ["museum", "sejarah", "cagar budaya"],
+    tagsEn: ["museum", "history", "cultural heritage"]
+  },
+  {
+    id: 7,
+    name: "Taman Flora Bratang",
+    nameEn: "Bratang Flora Park",
+    slug: "taman-flora-bratang",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "wisata-budaya",
+    address: "Jl. Raya Bratang Binangun, Surabaya",
+    hours: "Setiap hari, 07.00-17.00 WIB",
+    hoursEn: "Daily, 07:00-17:00 WIB",
+    description: "Taman Flora menawarkan suasana asri bagi pengunjung yang ingin melepas penat. Selain menjadi ruang terbuka, taman ini juga berfungsi sebagai paru-paru kota yang membantu mengurangi polusi.",
+    descriptionEn: "Flora Park offers a lush, relaxing green space for visitors. In addition to providing open space, the park serves as one of the city's green lungs and helps reduce pollution.",
+    infoSections: [
+      {
+        title: "Fasilitas",
+        titleEn: "Facilities",
+        items: [
+          "Kebun Binatang Mini",
+          "Permainan Anak",
+          "Outdoor Fitness",
+          "Perpustakaan",
+          "Toilet",
+          "Tempat Duduk-Duduk",
+          "Area Tanaman Obat-Obatan (TOGA)",
+          "Parkir Sepeda",
+          "Parkir Mobil & Motor",
+          "Rumah Kompos"
+        ],
+        itemsEn: [
+          "Mini zoo",
+          "Children's play area",
+          "Outdoor fitness area",
+          "Library",
+          "Restrooms",
+          "Seating area",
+          "Medicinal plant garden",
+          "Bicycle parking",
+          "Car and motorcycle parking",
+          "Composting facility"
+        ]
+      }
+    ],
+    tags: ["taman kota", "ruang terbuka", "ramah keluarga"],
+    tagsEn: ["city park", "green space", "family-friendly"]
+  },
+  {
+    id: 8,
+    name: "Kos Barat Pak Didik",
+    nameEn: "Kos Barat Pak Didik",
+    slug: "kos-barat-pak-didik",
+    categorySlug: "kebutuhan-harian",
+    subcategorySlug: "kos-kontrakan",
+    address: "Jl. Gubeng Jaya 2 No. 48, Surabaya",
+    priceRange: "Rp 650.000-750.000 per bulan",
+    priceRangeEn: "IDR 650,000-750,000 per month",
+    description: "Kos putri dekat kampus dengan fasilitas Wi-Fi, air, listrik, dapur bersama, kamar mandi luar, lemari, meja, dan kasur.",
+    descriptionEn: "A women's boarding house near campus with Wi-Fi, water, electricity, a shared kitchen, an external bathroom, a wardrobe, a desk, and a bed.",
+    infoSections: [
+      {
+        title: "Fasilitas Kos",
+        titleEn: "Facilities",
+        items: ["Wi-Fi", "Air", "Listrik", "Dapur bersama", "Kamar mandi luar", "Lemari", "Meja", "Kasur"],
+        itemsEn: ["Wi-Fi", "Water", "Electricity", "Shared kitchen", "Shared bathroom", "Wardrobe", "Desk", "Bed"]
+      }
+    ],
+    tags: ["kos putri", "dekat kampus", "gubeng jaya"],
+    tagsEn: ["women's boarding house", "near campus", "gubeng jaya"]
+  },
+  {
+    id: 9,
+    name: "Halte Bus Flash UNAIR",
+    nameEn: "UNAIR Flash Bus Stop",
+    slug: "halte-bus-flash-unair",
+    categorySlug: "kebutuhan-harian",
+    subcategorySlug: "transportasi",
+    address: "Jl. Dharmawangsa Dalam Selatan No. 12, Surabaya",
+    hours: "06.00-18.00 WIB",
+    hoursEn: "06:00-18:00 WIB",
+    description: "Halte Bus Flash UNAIR melayani mahasiswa UNAIR yang ingin bermobilisasi secara gratis antara Kampus A, Kampus B, dan Kampus C dengan bus sesuai jadwal yang telah ditentukan.",
+    descriptionEn: "The UNAIR Flash Bus Stop serves UNAIR students traveling for free between Campuses A, B, and C on the scheduled bus service.",
+    infoSections: [
+      {
+        title: "Informasi Layanan",
+        titleEn: "Service Information",
+        items: [
+          "Layanan bus gratis untuk mahasiswa UNAIR",
+          "Menghubungkan Kampus A, Kampus B, dan Kampus C",
+          "Keberangkatan mengikuti jadwal yang telah ditentukan"
+        ],
+        itemsEn: [
+          "Free bus service for UNAIR students",
+          "Connects Campuses A, B, and C",
+          "Departures follow the published schedule"
+        ]
+      }
+    ],
+    infoTables: [
+      {
+        title: "Jadwal Bus Flash",
+        titleEn: "Flash Bus Schedule",
+        headers: ["Bus", "Berangkat C", "Tiba B", "Berangkat B", "Tiba A", "Berangkat A", "Tiba C"],
+        headersEn: ["Bus", "Depart C", "Arrive B", "Depart B", "Arrive A", "Depart A", "Arrive C"],
+        rows: [
+          ["1", "05.30", "06.00", "06.05", "06.15", "06.20", "06.40"],
+          ["2", "06.00", "06.30", "06.35", "06.45", "06.50", "07.10"],
+          ["3", "06.30", "07.00", "07.05", "07.15", "07.20", "07.40"],
+          ["4", "07.00", "07.30", "07.35", "07.45", "07.50", "08.10"],
+          ["5", "07.30", "08.00", "08.05", "08.15", "08.20", "08.40"],
+          ["6", "08.00", "08.30", "08.35", "08.45", "08.50", "09.10"],
+          ["1", "08.30", "09.00", "09.05", "09.15", "09.20", "09.40"],
+          ["2", "09.00", "09.30", "09.35", "09.45", "09.50", "10.10"],
+          ["3", "09.30", "10.00", "10.05", "10.15", "10.20", "10.40"],
+          ["4", "10.00", "10.30", "10.35", "10.45", "10.50", "11.10"],
+          ["5", "10.30", "11.00", "11.05", "11.15", "11.20", "11.40"],
+          ["6", "11.00", "11.30", "11.35", "11.45", "11.50", "12.10"],
+          ["1", "11.30", "12.00", "12.05", "12.15", "12.20", "12.40"],
+          ["2", "12.00", "12.30", "12.35", "12.45", "12.50", "13.10"],
+          ["3", "12.30", "13.00", "13.05", "13.15", "13.20", "13.40"],
+          ["4", "13.00", "13.30", "13.35", "13.45", "13.50", "14.10"],
+          ["5", "13.30", "14.00", "14.05", "14.15", "14.20", "14.40"],
+          ["6", "14.00", "14.30", "14.35", "14.45", "14.50", "15.10"],
+          ["1", "14.30", "15.00", "15.05", "15.15", "15.20", "15.40"],
+          ["2", "15.00", "15.30", "15.35", "15.45", "15.50", "16.10"],
+          ["3", "15.30", "16.00", "16.05", "16.15", "16.20", "16.40"],
+          ["4", "16.00", "16.30", "16.35", "16.45", "16.50", "17.10"],
+          ["5", "16.30", "17.00", "17.05", "17.15", "17.20", "17.40"],
+          ["6", "17.00", "17.30", "17.35", "17.45", "17.50", "18.10"]
+        ]
+      }
+    ],
+    tags: ["bus kampus", "transportasi", "UNAIR"],
+    tagsEn: ["campus bus", "transportation", "UNAIR"]
+  },
+  {
+    id: 10,
+    name: "Taman Bungkul",
+    nameEn: "Bungkul Park",
+    slug: "taman-bungkul",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "wisata-budaya",
+    address: "Jl. Taman Bungkul, Surabaya",
+    priceRange: "Gratis",
+    priceRangeEn: "Free admission",
+    hours: "24 jam",
+    hoursEn: "Open 24 hours",
+    description: "Taman Bungkul adalah salah satu Ruang Terbuka Hijau (RTH) di Surabaya yang menawarkan berbagai fasilitas menarik. Sejak dibuka pada tahun 2007 dan direvitalisasi pada tahun 2014, taman ini tetap menjadi tempat nongkrong favorit di kota ini. Banyak warga Surabaya yang menghabiskan waktu bersama anak-anak mereka di area taman bermain atau playground. Taman ini terbuka selama 24 jam secara gratis. Wisatawan dapat memilih waktu pagi, siang, sore, atau malam sesuai dengan keinginan.",
+    descriptionEn: "Bungkul Park is one of Surabaya's urban green spaces, offering a variety of facilities. Since opening in 2007 and being revitalized in 2014, it has remained a favorite gathering place in the city. Many Surabaya residents spend time here with their children in the playground. The park is open 24 hours a day and free to enter, so visitors can choose to come in the morning, afternoon, evening, or at night.",
+    infoSections: [
+      {
+        title: "Fasilitas & Kegiatan",
+        titleEn: "Facilities & Activities",
+        items: [
+          "Amphitheater berbentuk lingkaran",
+          "Jogging track",
+          "Arena skateboard",
+          "BMX track",
+          "Car Free Day setiap Minggu pagi",
+          "Beragam pilihan kuliner"
+        ],
+        itemsEn: [
+          "Circular amphitheater",
+          "Jogging track",
+          "Skateboard area",
+          "BMX track",
+          "Car-free day on Sunday mornings",
+          "A variety of food options"
+        ]
+      }
+    ],
+    tags: ["taman kota", "wisata gratis", "ruang terbuka hijau"],
+    tagsEn: ["city park", "free attraction", "green space"]
+  },
+  {
+    id: 11,
+    name: "Monumen Kapal Selam",
+    nameEn: "Submarine Monument",
+    slug: "monumen-kapal-selam",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "museum-galeri",
+    address: "Jl. Pemuda No. 39, Surabaya",
+    priceRange: "Rp15.000-25.000",
+    priceRangeEn: "IDR 15,000-25,000 per ticket",
+    hours: "08.00-21.00 WIB",
+    hoursEn: "08:00-21:00 WIB",
+    description: "Lokasinya yang strategis di kota Surabaya, mudah bagi pengunjung untuk berwisata bersama keluarga ataupun teman ke Monumen Kapal Selam, bisa mendapatkan pengetahuan tambahan mengenal sejarah Kapal Selam KRI Pasopati 410, yang dulu pernah ikut terlibat dalam operasi pembebasan Irian Barat dari tangan Belanda kala itu.",
+    descriptionEn: "Its strategic location in Surabaya makes it easy for visitors to explore the Submarine Monument with family or friends. Visitors can learn about the history of the KRI Pasopati 410 submarine, which once took part in the operation to liberate West Irian from Dutch control.",
+    infoSections: [
+      {
+        title: "Harga Tiket",
+        titleEn: "Ticket Prices",
+        items: [
+          "Domestik/lokal: Rp15.000 per tiket",
+          "Mancanegara: Rp25.000 per tiket"
+        ],
+        itemsEn: [
+          "Domestic/local visitors: IDR 15,000 per ticket",
+          "International visitors: IDR 25,000 per ticket"
+        ]
+      },
+      {
+        title: "Ruangan KRI Pasopati",
+        titleEn: "Rooms aboard KRI Pasopati",
+        items: [
+          "Ruang haluan torpedo: dipersenjatai 4 torpedo propeller dan juga digunakan untuk penyimpanan torpedo",
+          "Ruang Komandan",
+          "Ruang Makan",
+          "Ruang Kerja",
+          "Ruang Baterai I di bawah dek",
+          "Jembatan utama",
+          "Pusat Komando",
+          "Ruang Penyimpanan Makanan di bawah dek",
+          "Ruang Awak Kapal",
+          "Ruang Dapur",
+          "Ruang penyimpanan Baterai II di bawah dek",
+          "Ruang Mesin Diesel dan Terminal Mesin",
+          "Kamar Mesin Listrik",
+          "Ruang torpedo buritan yang berisi 2 torpedo"
+        ],
+        itemsEn: [
+          "Forward torpedo room: armed with four propeller torpedoes and also used for torpedo storage",
+          "Commander's room",
+          "Dining room",
+          "Workroom",
+          "Battery I room below deck",
+          "Main bridge",
+          "Command center",
+          "Food storage room below deck",
+          "Crew quarters",
+          "Galley",
+          "Battery II storage room below deck",
+          "Diesel engine and engine terminal room",
+          "Electric engine room",
+          "Aft torpedo room containing two torpedoes"
+        ]
+      }
+    ],
+    tags: ["museum", "sejarah", "kapal selam"],
+    tagsEn: ["museum", "history", "submarine"]
+  },
+  {
+    id: 12,
+    name: "Perpustakaan Medayu Agung",
+    nameEn: "Medayu Agung Library",
+    slug: "perpustakaan-medayu-agung",
+    categorySlug: "jelajah-kota",
+    subcategorySlug: "perpustakaan-umum",
+    address: "Jl. Medayu Selatan Gang IV No. 42-44, Surabaya",
+    hours: "Senin-Sabtu, 09.00-16.00 WIB",
+    hoursEn: "Monday-Saturday, 09:00-16:00 WIB",
+    description: "Perpustakaan Medayu Agung berdiri pada tahun 2001, dibawah naungan sebuah Yayasan yang bernama Medayu Agung, yang berarti “Berbuat kebaikan berdasar budi yang luhur, kebajikan, dan kebijaksanaan untuk tujuan yang besar (Agung)”.",
+    descriptionEn: "Medayu Agung Library was established in 2001 under the Medayu Agung Foundation. The name means “doing good based on noble character, virtue, and wisdom for a great purpose.”",
+    infoSections: [
+      {
+        title: "Koleksi Perpustakaan",
+        titleEn: "Library Collection",
+        items: [
+          "Literatur sejarah, sosial, politik, filsafat, hukum, budaya, agama, dan biografi",
+          "Koleksi dalam bahasa Indonesia, Melayu, Jawa, Belanda, Jerman, Perancis, dan Tionghoa",
+          "Sekitar 7.500 eksemplar buku",
+          "Koleksi koran, majalah, dan foto-foto sejarah",
+          "Literatur terbitan tahun 1800-an dan awal tahun 1900-an"
+        ],
+        itemsEn: [
+          "Literature on history, society, politics, philosophy, law, culture, religion, and biographies",
+          "Materials in Indonesian, Malay, Javanese, Dutch, German, French, and Chinese",
+          "Approximately 7,500 book copies",
+          "Newspaper, magazine, and historical photo collections",
+          "Literature published in the 1800s and early 1900s"
+        ]
+      }
+    ],
+    tags: ["perpustakaan", "sejarah", "koleksi buku"],
+    tagsEn: ["library", "history", "book collection"]
   }
 ];
 

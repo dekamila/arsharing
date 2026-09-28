@@ -21,6 +21,8 @@ const BackButton = ({ href, label }: BackButtonProps) => {
     .replace('Kembali ke Beasiswa', 'Back to Scholarships')
     .replace('Kembali ke Magang & Karir', 'Back to Internships & Careers')
     .replace('Kembali ke Sekitar Kampus', 'Back to Around Campus')
+    .replace('Kembali ke Jelajah Kota', 'Back to Explore the City')
+    .replace('Kembali ke Kebutuhan Harian', 'Back to Daily Needs')
     .replace('Kembali ke Event', 'Back to Events')
     .replace('Kembali ke Panduan Internasional', 'Back to International Guide') : (label || t.back);
   const displayLabel = localizedLabel;
@@ -29,7 +31,8 @@ const BackButton = ({ href, label }: BackButtonProps) => {
     return (
       <Link
         href={href}
-        className="inline-flex items-center text-sm font-medium text-secondary hover:text-primary transition-colors my-4 group"
+        style={{ top: 'calc(var(--site-header-height, 5rem) + 2.25rem)' }}
+        className="sticky z-40 my-4 inline-flex items-center bg-cream/95 py-1 text-sm font-medium text-secondary backdrop-blur-sm transition-colors hover:text-primary group"
       >
         <span className="transform transition-transform group-hover:-translate-x-1 mr-1">←</span>
         {displayLabel.replace('← ', '')}
@@ -40,7 +43,8 @@ const BackButton = ({ href, label }: BackButtonProps) => {
   return (
     <button
       onClick={() => router.back()}
-      className="inline-flex items-center text-sm font-medium text-secondary hover:text-primary transition-colors my-4 group"
+      style={{ top: 'calc(var(--site-header-height, 5rem) + 2.25rem)' }}
+      className="sticky z-40 my-4 inline-flex items-center bg-cream/95 py-1 text-sm font-medium text-secondary backdrop-blur-sm transition-colors hover:text-primary group"
     >
       <span className="transform transition-transform group-hover:-translate-x-1 mr-1">←</span>
       {displayLabel.replace('← ', '')}

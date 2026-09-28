@@ -5,13 +5,12 @@ import BackButton from "@/components/shared/BackButton";
 import { 
   getCategoryBySlug, 
   getArticlesByCategory, 
-  getPinnedArticles,
   getPopularArticles,
   getAllQuickLinks
 } from "@/lib/queries";
 import { notFound } from "next/navigation";
 import LocalizedCategoryHeader from "@/components/shared/LocalizedCategoryHeader";
-import LocalizedSectionTitle from "@/components/shared/LocalizedSectionTitle";
+import OpportunityList from "@/components/shared/OpportunityList";
 
 export default async function BeasiswaPage() {
   const categorySlug = 'beasiswa';
@@ -22,7 +21,12 @@ export default async function BeasiswaPage() {
   }
 
   const allArticles = getArticlesByCategory(categorySlug);
-  const pinnedArticles = getPinnedArticles(categorySlug);
+    const quickInfoArticles = allArticles.filter((article) =>
+      ['tips-menulis-essay-beasiswa', 'beasiswa-lpdp-persyaratan'].includes(article.slug)
+    );
+    const registrationInfoArticles = allArticles.filter((article) =>
+      ['beasiswa-pertukaran-asean', 'beasiswa-unggulan-kemendikbud-2027', 'beasiswa-djarum-foundation-2026'].includes(article.slug)
+    );
   
   const popularArticles = getPopularArticles(5);
   const upcomingEvents = getArticlesByCategory('event').slice(0, 3);
@@ -40,17 +44,31 @@ export default async function BeasiswaPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
         <div className="lg:col-span-2">
           <LocalizedCategoryHeader category={category} />
-          
-          {pinnedArticles.length > 0 && (
-            <div className="mb-10">
-              <LocalizedSectionTitle kind="important" className="text-xl font-bold text-secondary mb-4 border-b pb-2" />
-              <ArticleList articles={pinnedArticles} showCategory={false} />
+
+          <div className="space-y-8">
+            <div className="mb-6 rounded-xl border border-primary/20 bg-[#FFFDF8] px-4 py-3 shadow-sm">
+              <p className="text-sm text-text-dark mb-2">
+                Informasi lebih lengkap mengenai beasiswa mitra yang tersedia di UNAIR bisa dilihat di situs resmi UNAIR.
+              </p>
+              <a
+                href="https://unair.ac.id/mahasiswa-beasiswa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center font-semibold text-secondary hover:text-primary transition-colors"
+              >
+                Lihat Beasiswa UNAIR →
+              </a>
             </div>
-          )}
-          
-          <div>
-            <LocalizedSectionTitle kind="all" className="text-xl font-bold text-primary mb-4 border-b pb-2" />
-            <ArticleList articles={allArticles} showCategory={false} />
+
+            <div>
+              <h3 className="text-lg font-semibold text-primary mb-3">📝 Sekilas Informasi</h3>
+              <ArticleList articles={quickInfoArticles} showCategory={false} />
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-primary mb-3">📚 Info Pendaftaran Beasiswa</h3>
+              <OpportunityList articles={registrationInfoArticles} />
+            </div>
           </div>
         </div>
         
