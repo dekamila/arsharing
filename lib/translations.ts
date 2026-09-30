@@ -75,6 +75,7 @@ export const translations = {
     enterKeyword: 'Masukkan kata kunci untuk mencari informasi.',
     foundResults: (count: number, q: string) => `Ditemukan ${count} hasil untuk "${q}"`,
     noResults: (q: string) => `Tidak ditemukan hasil untuk "${q}". Coba kata kunci lain.`,
+    searchRecommendations: 'Kategori & Rekomendasi',
   },
   en: {
     portalName: 'ARSharing | UNAIR Student Info',
@@ -150,5 +151,6 @@ export const translations = {
     enterKeyword: 'Enter a keyword to search for information.',
     foundResults: (count: number, q: string) => `Found ${count} result(s) for "${q}"`,
     noResults: (q: string) => `No results found for "${q}". Try another keyword.`,
+    searchRecommendations: 'Categories & Recommendations',
   }
 };

@@ -1,7 +1,14 @@
 import { categories, articles, quickLinks, places } from './data';
 import { Article, Category, QuickLink, Place } from './types';
 import { Language } from './translations';
-import { localizeArticle } from './localizedData';
+import { localizeArticle, localizeCategory, localizePlace, localizeQuickLink } from './localizedData';
+
+export interface SearchResults {
+  articles: Article[];
+  places: Place[];
+  recommendations: { category: Category; text: string }[];
+  quickLinks: QuickLink[];
+}
 
 export function getAllCategories(): Category[] { 
   return categories; 
@@ -41,7 +48,9 @@ export function getPinnedArticles(categorySlug: string): Article[] {
 }
 
 export function searchArticles(query: string, language: Language = 'id'): Article[] {
-  const lowerQuery = query.toLowerCase();
+  const lowerQuery = query.trim().toLowerCase();
+  if (!lowerQuery) return [];
+
   return articles.filter((article) => {
     const searchableArticle = localizeArticle(article, language);
     return searchableArticle.title.toLowerCase().includes(lowerQuery) ||
@@ -49,6 +58,43 @@ export function searchArticles(query: string, language: Language = 'id'): Articl
       searchableArticle.content.toLowerCase().includes(lowerQuery) ||
       searchableArticle.tags.some((tag) => tag.toLowerCase().includes(lowerQuery));
   });
+}
+
+function containsQuery(values: unknown, lowerQuery: string): boolean {
+  if (typeof values === 'string') return values.toLowerCase().includes(lowerQuery);
+  if (Array.isArray(values)) return values.some((value) => containsQuery(value, lowerQuery));
+  if (values && typeof values === 'object') {
+    return Object.values(values).some((value) => containsQuery(value, lowerQuery));
+  }
+  return false;
+}
+
+export function searchContent(query: string, language: Language = 'id'): SearchResults {
+  const lowerQuery = query.trim().toLowerCase();
+  if (!lowerQuery) return { articles: [], places: [], recommendations: [], quickLinks: [] };
+
+  const recommendations = categories.flatMap((category) => {
+    const localizedCategory = localizeCategory(category, language);
+    const matches = (localizedCategory.highlights || [])
+      .filter((highlight) => highlight.toLowerCase().includes(lowerQuery))
+      .map((text) => ({ category: localizedCategory, text }));
+
+    if (localizedCategory.name.toLowerCase().includes(lowerQuery) ||
+        localizedCategory.description.toLowerCase().includes(lowerQuery)) {
+      matches.unshift({ category: localizedCategory, text: localizedCategory.name });
+    }
+
+    return matches;
+  });
+
+  return {
+    articles: searchArticles(query, language),
+    places: places.filter((place) => containsQuery(localizePlace(place, language), lowerQuery)),
+    recommendations,
+    quickLinks: quickLinks
+      .map((quickLink) => localizeQuickLink(quickLink, language))
+      .filter((quickLink) => containsQuery(quickLink, lowerQuery)),
+  };
 }
 
 export function getRecentArticlesByCategory(categorySlug: string, limit: number = 3): Article[] {
